@@ -5,6 +5,7 @@ Run it with:   streamlit run app.py
 """
 
 import base64
+import dataclasses
 import json
 import os
 from datetime import datetime, timedelta, timezone
@@ -88,6 +89,51 @@ def flag_uri(name):
     with open(p, "rb") as fh:
         b64 = base64.b64encode(fh.read()).decode()
     return f"data:image/png;base64,{b64}"
+
+
+def _projected_live(matches):
+    """Match list with every in-progress score applied as if final (the official
+    home_goals/away_goals are left untouched on the originals)."""
+    return [dataclasses.replace(m, home_goals=m.live_home, away_goals=m.live_away)
+            if (m.is_live and m.live_home is not None) else m
+            for m in matches]
+
+
+def live_group_box(group, matches, meta, ov, selected=None):
+    """Compact 'if the live result(s) stand' standings table for one group.
+
+    Ranks with the live score applied as final, and colors/medals using the same
+    mathematically-certain verdicts as the main standings (`ov` = the overview
+    built on this same if-result-stands scenario).
+    """
+    rows = group_rows(group, _projected_live(matches), meta)
+    td = "padding:2px 6px"
+    bh = f"{td};text-align:center;font-weight:bold;color:#888"
+    head = (f"<tr><th style='{td}'></th>"
+            f"<th style='{td};text-align:left'>Team</th>"
+            f"<th style='{bh}'>MP</th>"
+            f"<th style='{bh};text-align:right'>GD</th>"
+            f"<th style='{bh};text-align:right'>Pts</th></tr>")
+    trs = []
+    for i, r in enumerate(rows, 1):
+        info = ov["team"].get(r.team, {})
+        rank = info.get("medal") or str(i)
+        bg = ("background:rgba(21,128,61,0.20)" if info.get("qualified")
+              else "background:rgba(200,40,40,0.18)" if info.get("eliminated") else "")
+        name = flags.label(r.team) + (" ⭐" if r.team == selected else "")
+        c = f"{td};text-align:center"
+        rt = f"{td};text-align:right"
+        trs.append(
+            f"<tr style='{bg}'>"
+            f"<td style='{td}'>{rank}</td>"
+            f"<td style='{td};white-space:nowrap'>{name}</td>"
+            f"<td style='{c}'>{r.played}</td>"
+            f"<td style='{rt}'>{r.gd:+d}</td>"
+            f"<td style='{rt}'><b>{r.points}</b></td></tr>")
+    return (f"<div style='font-size:12px;font-weight:bold;color:#888;margin:4px 0 2px'>"
+            f"Group {group}</div>"
+            "<table style='border-collapse:collapse;width:100%;font-size:13px'>"
+            f"{head}{''.join(trs)}</table>")
 
 
 # ---------------------------------------------------------------------------
@@ -220,6 +266,15 @@ def build_overview(ms, mt):
 def overview(path, mtime):
     ms, mt = _load(path, mtime)
     return build_overview(ms, mt)
+
+
+@st.cache_data(show_spinner=False)
+def projected_overview(path, mtime):
+    """build_overview as if every in-progress score were final — the certain
+    verdicts behind the sidebar 'if result stands' box. Cached on the file mtime,
+    so it only recomputes when the live scores actually change."""
+    ms, mt = _load(path, mtime)
+    return build_overview(_projected_live(ms), mt)
 
 
 # The bracket structure + forward simulation live in wc2026/knockout.py.
@@ -455,12 +510,25 @@ st.sidebar.divider()
 
 fresh = data.source_freshness(matches)
 if fresh["source_as_of"]:
+    live_matches = fresh["live_matches"]
+    if live_matches:
+        st.sidebar.error("🔴 **Live** — scores auto-refresh every 2 min.")
+        for m in live_matches:
+            if m.live_home is not None:
+                score = f"{m.live_home}–{m.live_away}"
+                line = f"{flags.label(m.home)} **{score}** {flags.label(m.away)}"
+            else:
+                line = f"{flags.label(m.home)} vs {flags.label(m.away)}"
+            st.sidebar.markdown(f"▶ **live:** {line}")
+        st.sidebar.markdown("**if result stands:**")
+        pov = projected_overview(path, mtime)
+        for g in sorted({m.group for m in live_matches}):
+            st.sidebar.markdown(live_group_box(g, matches, meta, pov, selected=team),
+                                unsafe_allow_html=True)
     st.sidebar.success(
         f"Updated {_ago(fresh['source_as_of'])}\n\n"
         f"{fresh['counts']['finished']} finished · {fresh['counts']['live']} live · "
         f"{fresh['counts']['scheduled']} upcoming")
-    for m in fresh["live_matches"]:
-        st.sidebar.markdown(f"▶ **live:** {flags.label(m.home)} vs {flags.label(m.away)}")
 else:
     st.sidebar.info(f"Using **{os.path.basename(path)}** (no source timestamps).")
 
@@ -495,9 +563,7 @@ if PUBLISHED:
     live_mode = bool(live_token) and _in_live_window(matches)
     od = load_odds(betting_sig())
     odds_when = _ago(data.parse_dt(od.get("fetched"))) if od.get("fetched") else "not loaded"
-    if live_mode:
-        st.sidebar.success("🔴 **Live** — scores auto-refresh every 2 min.")
-    elif live_token:
+    if live_token:
         st.sidebar.caption(f"📡 Live scores refresh automatically during games.\n\n"
                            f"_Odds updated {odds_when}._")
     else:

@@ -31,10 +31,19 @@ class Match:
     kickoff: Optional[str] = None       # match start time (ISO, UTC) from source
     status: Optional[str] = None        # FINISHED / IN_PLAY / TIMED / ...
     last_updated: Optional[str] = None  # when the SOURCE last changed this record
+    # in-play score while a match is live; kept separate from home_goals/away_goals
+    # so a live game is NOT treated as final anywhere except the explicit
+    # "if result stands" view. None unless the match is currently live.
+    live_home: Optional[int] = None
+    live_away: Optional[int] = None
 
     @property
     def played(self) -> bool:
         return self.home_goals is not None and self.away_goals is not None
+
+    @property
+    def is_live(self) -> bool:
+        return (self.status or "").upper() in ("IN_PLAY", "PAUSED", "LIVE")
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -50,6 +59,8 @@ class Match:
             kickoff=d.get("kickoff"),
             status=d.get("status"),
             last_updated=d.get("last_updated"),
+            live_home=d.get("live_home"),
+            live_away=d.get("live_away"),
         )
 
 
@@ -108,7 +119,9 @@ def fetch_live(token: str, competition: str = DEFAULT_COMPETITION) -> list[Match
         if group is None:                       # skip knockout / playoff fixtures
             continue
         ft = (m.get("score") or {}).get("fullTime") or {}
-        finished = m.get("status") == "FINISHED"
+        status = m.get("status")
+        finished = status == "FINISHED"
+        live = status in ("IN_PLAY", "PAUSED", "LIVE")
         matches.append(
             Match(
                 group=group,
@@ -117,8 +130,11 @@ def fetch_live(token: str, competition: str = DEFAULT_COMPETITION) -> list[Match
                 home_goals=ft.get("home") if finished else None,
                 away_goals=ft.get("away") if finished else None,
                 kickoff=m.get("utcDate"),
-                status=m.get("status"),
+                status=status,
                 last_updated=m.get("lastUpdated"),
+                # running score during play (0–0 default so a kicked-off game shows 0)
+                live_home=(ft.get("home") or 0) if live else None,
+                live_away=(ft.get("away") or 0) if live else None,
             )
         )
     return matches

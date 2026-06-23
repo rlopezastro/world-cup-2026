@@ -1,0 +1,21 @@
+# --- secrets: never commit API keys ---
+.streamlit/secrets.toml
+secrets.json
+*.secret
+
+# --- python ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- os / editor ---
+.DS_Store
+.vscode/
+.idea/
+
+# NOTE: the data files (cache.json, scorers.json, betting_odds.json, squads.json,
+# meta.json, sample_data.json, wc2026/annexc.json) ARE committed on purpose — the
+# published app serves them, and the scheduled job updates them.

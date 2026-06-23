@@ -1,0 +1,45 @@
+name: Refresh data
+
+# Pulls fresh scores / scorers / odds and commits the updated JSON, which
+# triggers Streamlit Community Cloud to redeploy automatically.
+on:
+  schedule:
+    - cron: "0 */6 * * *"      # every 6 hours (UTC); adjust as you like
+  workflow_dispatch: {}         # allow manual runs from the Actions tab
+
+permissions:
+  contents: write               # needed to commit the refreshed files
+
+concurrency:                    # don't overlap runs
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: Refresh data
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python refresh_data.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "wc2026-bot"
+          git config user.email "actions@github.com"
+          git add cache.json scorers.json betting_odds.json
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "data: scheduled refresh [skip ci]"
+            git push
+          fi

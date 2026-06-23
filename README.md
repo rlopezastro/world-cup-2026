@@ -118,3 +118,46 @@ plenty for this tool.
 - `wc2026/analysis.py` — status, needs, scenarios, Monte Carlo, game importance
 - `wc2026/cli.py` — command-line interface
 - `meta.json` — optional FIFA rankings & conduct scores for deep tiebreakers
+
+## Deploy as a public website
+
+The app is built to run publicly on **[Streamlit Community Cloud](https://share.streamlit.io)**
+with **no API keys exposed to visitors**. Live scores update in-app; betting odds
+and final results are refreshed by a scheduled GitHub Action. Data files are
+committed and served as-is, so the site works even with no keys at all.
+
+### One-time setup
+
+1. **Push to GitHub** and create the app on share.streamlit.io
+   (repo → branch `main` → main file `app.py`).
+2. **Make it public:** app → Settings → *Sharing* → anyone can view (otherwise
+   visitors hit a sign-in gate).
+3. **Streamlit secrets** (app → Settings → *Secrets*, TOML format):
+   ```toml
+   published = true                              # read-only mode: hides key inputs / fetch buttons
+   football_data = "your-football-data-token"    # powers in-app live scores (server-side only)
+   ```
+4. **GitHub Actions secrets** (repo → Settings → *Secrets and variables* →
+   *Actions*), two entries:
+   - `FOOTBALL_DATA_TOKEN` — football-data.org token
+   - `ODDS_API_KEY` — The Odds API key
+
+   (The odds key is **not** put in Streamlit — only the scheduled job uses it.)
+
+### How refreshing works
+
+| Data | Where | Cadence |
+|---|---|---|
+| **Live scores** | in-app, shared TTL cache | every ~2 min **while a game is in play** (shared across all viewers ⇒ ~1 request/cycle) |
+| **Odds** | GitHub Action (`refresh_data.py`) | once **~30 min before each kickoff** |
+| **Final scores** | GitHub Action | every 5 min through each game until FINISHED, then stops |
+| **Full refresh** | GitHub Action | **06:00 and 00:00 Pacific** daily |
+
+The workflow (`.github/workflows/refresh.yml`) wakes every 5 minutes but only
+calls an API when a game is imminent or in play — otherwise it's a free no-op.
+Run it by hand anytime from the repo's **Actions** tab (the *force* option does a
+full refresh immediately).
+
+- `PUBLISHED` mode is toggled by `published = true` in secrets (or
+  `WC2026_PUBLISHED=1` locally).
+- `refresh_data.py --force` does a full manual refresh from the command line.

@@ -633,21 +633,26 @@ def _auto_refresh():
         return
     current = data.load_file(CACHE) if os.path.exists(CACHE) else []
     if fetched != [m.to_dict() for m in current]:
+        # write the new scores; the data caches are keyed on the file mtime, so the
+        # rerun picks them up automatically (no global cache clear needed)
         data.save_file(CACHE, [data.Match.from_dict(d) for d in fetched])
-        st.cache_data.clear()
         st.rerun()
 
 
 _auto_refresh()
 
-(t_stand, t_knock, t_team, t_h2h, t_scn, t_imp, t_odds, t_title, t_score, t_sched,
- t_roster, t_fifa) = st.tabs(
-    ["📊 Standings", "🗝️ Knockout", "🎯 Team", "🆚 H2H", "🔮 Scenario",
-     "⚖️ Importance", "📈 Odds", "🏆 Title Odds", "⚽ Top Scorers", "📅 Schedule",
-     "👕 Rosters", "🌍 FIFA Rank"])
+# A nav selector (not st.tabs) so only the SELECTED section's code runs each render.
+# st.tabs renders every tab body on every run — which would re-run every simulation
+# on each load. With this, the heavy sim tabs compute lazily, only when opened
+# (and stay cached afterwards). `nav` persists across reruns via its key, so a live
+# score update doesn't bounce you off your current section.
+NAV = ["📊 Standings", "🗝️ Knockout", "🎯 Team", "🆚 H2H", "🔮 Scenario",
+       "⚖️ Importance", "📈 Odds", "🏆 Title Odds", "⚽ Top Scorers", "📅 Schedule",
+       "👕 Rosters", "🌍 FIFA Rank"]
+nav = st.radio("Section", NAV, horizontal=True, label_visibility="collapsed", key="nav")
 
 # ---- Standings ----
-with t_stand:
+if nav == "📊 Standings":
     st.subheader("Group standings")
     proj = project(matches, meta)
     ov = overview(path, mtime)
@@ -663,7 +668,7 @@ with t_stand:
     st.dataframe(tr, width="stretch")
 
 # ---- Knockout ----
-with t_knock:
+if nav == "🗝️ Knockout":
     st.subheader("🗝️ Knockout bracket")
     _KO_MODES = {
         "Locked qualifiers only (exact)": "locked",
@@ -718,7 +723,7 @@ with t_knock:
 _STAGE_COLS = [("r16", "Reach R16"), ("qf", "Reach QF"), ("sf", "Reach SF"),
                ("final", "Reach Final"), ("champion", "Win 🏆")]
 
-with t_title:
+if nav == "🏆 Title Odds":
     st.subheader("🏆 Title odds — deep-run probabilities")
     osig = betting_sig()
     twlabel = st.radio(
@@ -798,7 +803,7 @@ with t_title:
                            for c in tdf.columns if c != "Team"})
 
 # ---- Team ----
-with t_team:
+if nav == "🎯 Team":
     s = analysis.team_status(team, matches, meta)
     st.subheader(f"{flags.label(team)} — Group {s['group']}")
     c1, c2, c3 = st.columns(3)
@@ -874,7 +879,7 @@ with t_team:
         st.markdown("- " + line)
 
 # ---- Head-to-head ----
-with t_h2h:
+if nav == "🆚 H2H":
     st.subheader("🆚 Head-to-head")
     ia = TEAMS.index(team)
     ca, cb = st.columns(2)
@@ -945,7 +950,7 @@ with t_h2h:
         st.altair_chart(chart)
 
 # ---- Scenario ----
-with t_scn:
+if nav == "🔮 Scenario":
     st.subheader("🔮 Scenario builder")
     st.caption("Pick a matchup, set a hypothetical score, and add it. Stack as "
                "many as you like (you can even rewrite games already played), then "
@@ -1008,7 +1013,7 @@ with t_scn:
             st.write("**Best thirds:** " + ", ".join(flags.label(t) for t in pj.qualified_thirds))
 
 # ---- Odds ----
-with t_odds:
+if nav == "📈 Odds":
     osig = betting_sig()
     odds_loaded = have_odds(osig)
     wlabel = st.radio(
@@ -1062,7 +1067,7 @@ with t_odds:
     st.altair_chart((bars + text).properties(height=alt.Step(19)), width="stretch")
 
 # ---- Importance ----
-with t_imp:
+if nav == "⚖️ Importance":
     st.subheader("How much does a game matter?")
     rem = analysis.remaining(matches)
     if not rem:
@@ -1075,11 +1080,17 @@ with t_imp:
                            index=own[0] if own else 0)
         for_team = st.selectbox("Whose fate?", TEAMS, format_func=flags.label,
                                 index=TEAMS.index(team))
+        iwlabel = st.radio("Weighting model", ["FIFA ranking", "Betting odds"],
+                           horizontal=True, key="imp_weighting",
+                           help="Strength model for the simulation.")
+        odds_weighting = "odds" if iwlabel == "Betting odds" else "fifa"
+        if odds_weighting == "odds" and not have_odds():
+            odds_weighting = "fifa"
         m = rem[idx]
         res = cached_importance(path, mtime, for_team, m.home, m.away, n_sims,
                                 odds_weighting, betting_sig())
-        st.caption(f"Weighting: **{'Betting odds' if odds_weighting == 'odds' else 'FIFA ranking'}** "
-                   "(set in the Odds tab).")
+        st.caption(f"Weighting: **{'Betting odds' if odds_weighting == 'odds' else 'FIFA ranking'}**"
+                   " · exact 🔒 verdicts are unaffected.")
         order = list(res["by_result"])
         cert_for = (overview(path, mtime)["team"][for_team]["qualified"]
                     or overview(path, mtime)["team"][for_team]["eliminated"])
@@ -1110,7 +1121,7 @@ with t_imp:
                   f"{res['swing']*100:.0f} pts")
 
 # ---- Scorers ----
-with t_score:
+if nav == "⚽ Top Scorers":
     st.subheader("⚽ Top scorers")
     st.caption("Per-match goal events (who scored in which game) aren't on the free "
                "API tier. Player data refreshes when you Fetch in the sidebar.")
@@ -1182,7 +1193,7 @@ _POS = {"GK": "🧤 Goalkeepers", "DEF": "🛡️ Defenders",
         "MID": "⚙️ Midfielders", "FWD": "🎯 Forwards"}
 _POS_ORDER = {"GK": 0, "DEF": 1, "MID": 2, "FWD": 3}
 
-with t_roster:
+if nav == "👕 Rosters":
     st.subheader("👕 Squads")
 
     squads = load_squads()
@@ -1238,7 +1249,7 @@ with t_roster:
             st.dataframe(rdf, width="stretch", hide_index=True)
 
 # ---- Schedule ----
-with t_sched:
+if nav == "📅 Schedule":
     st.subheader("📅 Schedule & results")
     top = st.columns([1.3, 2])
     view = top[0].radio("View", ["List", "Calendar"], horizontal=True,
@@ -1304,7 +1315,7 @@ with t_sched:
             st.info("No matches to show for this filter.")
 
 # ---- FIFA ranking ----
-with t_fifa:
+if nav == "🌍 FIFA Rank":
     st.subheader("🌍 FIFA World Ranking")
     st.caption(f"Snapshot: {fifa.SNAPSHOT} — stored locally (not live). Used as the "
                "last-resort group tiebreaker and to weight the simulation.")

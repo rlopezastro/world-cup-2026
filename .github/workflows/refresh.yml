@@ -1,11 +1,17 @@
 name: Refresh data
 
-# Pulls fresh scores / scorers / odds and commits the updated JSON, which
-# triggers Streamlit Community Cloud to redeploy automatically.
+# Runs often but spends API requests only when a game is imminent / in play
+# (see refresh_data.py): odds ~30 min before each kickoff, scores around game
+# windows. Commits any changed JSON, which makes Streamlit Cloud redeploy.
 on:
   schedule:
-    - cron: "0 */6 * * *"      # every 6 hours (UTC); adjust as you like
-  workflow_dispatch: {}         # allow manual runs from the Actions tab
+    - cron: "*/15 * * * *"      # every 15 min (UTC); the script gates the API calls
+  workflow_dispatch:            # manual run; optionally force a full refresh
+    inputs:
+      force:
+        description: "Refresh everything now (ignore the schedule gate)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write               # needed to commit the refreshed files
@@ -23,14 +29,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      # no pip install: fetching uses only the stdlib (urllib) via the wc2026 package
 
-      - run: pip install -r requirements.txt
-
-      - name: Refresh data
+      - name: Refresh data (gated)
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python refresh_data.py
+        run: python refresh_data.py ${{ (github.event_name == 'workflow_dispatch' && inputs.force) && '--force' || '' }}
 
       - name: Commit if changed
         run: |

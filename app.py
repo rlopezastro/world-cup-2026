@@ -6,7 +6,7 @@ Run it with:   streamlit run app.py
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import altair as alt
 import pandas as pd
@@ -62,6 +62,30 @@ def load_odds(sig):
 def have_odds(sig=None):
     o = load_odds(betting_sig() if sig is None else sig)
     return bool(o.get("matches") or o.get("outrights_strength"))
+
+
+LIVE_WINDOW_MIN = 150   # minutes after kickoff a match may plausibly still be in play
+
+
+def _in_live_window(matches):
+    """True if 'now' falls inside any not-yet-final match's plausible in-play window.
+    Used to decide whether to poll for live scores (so we never burn requests when no
+    game could be on)."""
+    now = datetime.now(timezone.utc)
+    for m in matches:
+        if m.played:
+            continue
+        ko = data.parse_dt(m.kickoff)
+        if ko and ko <= now <= ko + timedelta(minutes=LIVE_WINDOW_MIN):
+            return True
+    return False
+
+
+@st.cache_data(ttl=110, show_spinner=False)
+def _shared_live_fetch(token):
+    """One live-scores fetch shared across all viewer sessions (TTL-deduped), so N
+    concurrent viewers still cost ~1 API request per ~2-minute refresh cycle."""
+    return [m.to_dict() for m in data.fetch_live(token)]
 
 
 @st.cache_data(show_spinner="Simulating…")
@@ -350,13 +374,22 @@ def _fetch_odds(okey):
 
 
 if PUBLISHED:
-    # public deployment: no keys, no in-app fetching. Data is refreshed out-of-band
-    # by a scheduled job and served from the committed JSON files.
-    token, live_mode, refresh_secs = "", False, 120
+    # public deployment: no key inputs / fetch buttons. Odds come from the scheduled
+    # job; live SCORES are polled in-app every 2 min (shared across all viewers via a
+    # TTL cache) using a server-side key from st.secrets — only while a game is live.
+    token, refresh_secs = "", 120
+    live_token = _st_secret("football_data")
+    live_mode = bool(live_token) and _in_live_window(matches)
     od = load_odds(betting_sig())
     when = od.get("fetched") or "bundled file"
-    st.sidebar.caption(f"📡 Data refreshes automatically on a schedule.\n\n"
-                       f"_Odds as of {when}._")
+    if live_mode:
+        st.sidebar.success("🔴 **Live** — scores auto-refresh every 2 min.")
+    elif live_token:
+        st.sidebar.caption(f"📡 Live scores refresh automatically during games.\n\n"
+                           f"_Odds as of {when}._")
+    else:
+        st.sidebar.caption(f"📡 Data refreshes automatically on a schedule.\n\n"
+                           f"_Odds as of {when}._")
 else:
     fd_saved = get_key("FOOTBALL_DATA_TOKEN", "football_data")
     odds_saved = get_key("ODDS_API_KEY", "odds_api")
@@ -436,6 +469,7 @@ else:
             "Check interval", [60, 120, 300], index=1,
             format_func=lambda s: f"every {s // 60} min")
         st.sidebar.caption(f"~1 API request every {refresh_secs // 60} min while on.")
+    live_token = token or os.environ.get("FOOTBALL_DATA_TOKEN", "")
 
 
 # ---------------------------------------------------------------------------
@@ -591,18 +625,15 @@ def hbar(df, value_col, label_col, x_title, height_step=19):
 def _auto_refresh():
     """When live mode is on: re-fetch on a timer, and rerun the whole app only
     when the results actually changed (so we don't re-simulate every tick)."""
-    if not live_mode:
-        return
-    tok = token or os.environ.get("FOOTBALL_DATA_TOKEN", "")
-    if not tok:
+    if not live_mode or not live_token:
         return
     try:
-        fetched = data.fetch_live(tok)
+        fetched = _shared_live_fetch(live_token)        # list[dict], shared/deduped
     except Exception:
         return
     current = data.load_file(CACHE) if os.path.exists(CACHE) else []
-    if [m.to_dict() for m in fetched] != [m.to_dict() for m in current]:
-        data.save_file(CACHE, fetched)
+    if fetched != [m.to_dict() for m in current]:
+        data.save_file(CACHE, [data.Match.from_dict(d) for d in fetched])
         st.cache_data.clear()
         st.rerun()
 

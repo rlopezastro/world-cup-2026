@@ -326,12 +326,27 @@ def get_key(env_name, secret_name):
 PUBLISHED = bool(os.environ.get("WC2026_PUBLISHED") or _st_secret("published", False))
 
 
+def _ago(dt):
+    """Human 'time since' for a tz-aware datetime, e.g. '7 hours ago'."""
+    if not dt:
+        return "unknown"
+    secs = (datetime.now(timezone.utc) - dt).total_seconds()
+    if secs < 90:
+        return "just now"
+    if secs < 3600:
+        return f"{round(secs / 60)} min ago"
+    if secs < 86400:
+        h = round(secs / 3600)
+        return f"{h} hour{'s' if h != 1 else ''} ago"
+    d = round(secs / 86400)
+    return f"{d} day{'s' if d != 1 else ''} ago"
+
+
 # ---------------------------------------------------------------------------
 # sidebar: freshness, refresh, global controls
 # ---------------------------------------------------------------------------
 st.sidebar.title("🏆 World Cup 2026")
-st.sidebar.caption("Group-stage scenarios — 2026 rules (H2H before overall GD, "
-                   "top 2 + best-8 thirds reach the Round of 32).")
+st.sidebar.caption("Standings, scenarios, odds & the road to the trophy.")
 
 team = st.sidebar.selectbox("Team", TEAMS, format_func=flags.label,
                             index=TEAMS.index("United States") if "United States" in TEAMS else 0)
@@ -341,9 +356,8 @@ st.sidebar.divider()
 
 fresh = data.source_freshness(matches)
 if fresh["source_as_of"]:
-    age = (fresh["now"] - fresh["source_as_of"]).total_seconds() / 60
     st.sidebar.success(
-        f"Data from {fresh['source_as_of']:%Y-%m-%d %H:%M UTC} ({age:.0f} min ago)\n\n"
+        f"Updated {_ago(fresh['source_as_of'])}\n\n"
         f"{fresh['counts']['finished']} finished · {fresh['counts']['live']} live · "
         f"{fresh['counts']['scheduled']} upcoming")
     for m in fresh["live_matches"]:
@@ -381,15 +395,15 @@ if PUBLISHED:
     live_token = _st_secret("football_data")
     live_mode = bool(live_token) and _in_live_window(matches)
     od = load_odds(betting_sig())
-    when = od.get("fetched") or "bundled file"
+    odds_when = _ago(data.parse_dt(od.get("fetched"))) if od.get("fetched") else "not loaded"
     if live_mode:
         st.sidebar.success("🔴 **Live** — scores auto-refresh every 2 min.")
     elif live_token:
         st.sidebar.caption(f"📡 Live scores refresh automatically during games.\n\n"
-                           f"_Odds as of {when}._")
+                           f"_Odds updated {odds_when}._")
     else:
         st.sidebar.caption(f"📡 Data refreshes automatically on a schedule.\n\n"
-                           f"_Odds as of {when}._")
+                           f"_Odds updated {odds_when}._")
 else:
     fd_saved = get_key("FOOTBALL_DATA_TOKEN", "football_data")
     odds_saved = get_key("ODDS_API_KEY", "odds_api")
@@ -438,8 +452,8 @@ else:
         if have_odds():
             nm = len(od.get("matches", {}))
             no = len(od.get("outrights_strength", {}))
-            when = od.get("fetched") or "manual file"
-            st.success(f"Loaded: {nm} match prices · {no} outright prices\n\n_as of {when}_")
+            when = _ago(data.parse_dt(od.get("fetched"))) if od.get("fetched") else "manual file"
+            st.success(f"Loaded: {nm} match prices · {no} outright prices\n\n_updated {when}_")
         else:
             st.caption("No odds loaded — odds-weighted mode falls back to FIFA ranking. "
                        "Add a key below to fetch, or drop a `betting_odds.json` next to app.py.")

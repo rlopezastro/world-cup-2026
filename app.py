@@ -376,6 +376,16 @@ def _frac_odds(dec):
     return f"{fr.numerator}:{fr.denominator}"
 
 
+def _odds_to_1(p):
+    """A probability as fractional odds-against normalized to ':1' (20% -> '4:1')."""
+    if not p or p <= 0:
+        return "—"
+    if p >= 0.999:
+        return "0:1"
+    x = (1 - p) / p
+    return f"{x:.0f}:1" if x >= 10 else f"{x:.1f}:1"
+
+
 def _ago(dt):
     """Human 'time since' for a tz-aware datetime, e.g. '7 hours ago'."""
     if not dt:
@@ -805,12 +815,13 @@ if nav == "🏆 Title Odds":
     st.markdown(f"#### {flags.label(team)}")
     cols = st.columns(len(_STAGE_COLS))
     for col, (key, lbl) in zip(cols, _STAGE_COLS):
-        col.metric(lbl, f"{d[key] * 100:.1f}%")
-
-    # bookmakers' outright (to-win) price for this team, under the strip
-    bdec = load_raw_odds(osig).get("outrights", {}).get(team)
-    if bdec:
-        st.caption(f"💰 Bookmakers — to win: **{_frac_odds(bdec)}**")
+        p = d[key]
+        col.markdown(
+            f"<div style='line-height:1.25'>"
+            f"<div style='font-size:13px;color:#8b949e'>{lbl}</div>"
+            f"<div style='font-size:1.75rem;font-weight:600'>{p * 100:.1f}%</div>"
+            f"<div style='font-size:11px;color:#7d8590'>{_odds_to_1(p)}</div>"
+            f"</div>", unsafe_allow_html=True)
 
     # most-likely road to the final
     st.markdown("##### 🛣️ Most likely road to the final")

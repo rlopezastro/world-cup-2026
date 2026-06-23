@@ -376,14 +376,28 @@ def _frac_odds(dec):
     return f"{fr.numerator}:{fr.denominator}"
 
 
-def _odds_to_1(p):
-    """A probability as fractional odds-against normalized to ':1' (20% -> '4:1')."""
+# standard fractional-odds ladder (num, den); favorites are odds-on (num < den)
+_ODDS_LADDER = [
+    (1, 5), (2, 9), (1, 4), (2, 7), (3, 10), (1, 3), (4, 11), (2, 5), (4, 9),
+    (1, 2), (8, 15), (4, 7), (8, 13), (2, 3), (4, 5), (5, 6), (10, 11), (1, 1),
+    (11, 10), (6, 5), (5, 4), (11, 8), (3, 2), (7, 4), (15, 8), (2, 1), (9, 4),
+    (5, 2), (11, 4), (3, 1), (7, 2), (4, 1), (9, 2), (5, 1), (11, 2), (6, 1),
+    (13, 2), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (12, 1), (14, 1), (16, 1),
+    (18, 1), (20, 1), (22, 1), (25, 1), (28, 1), (33, 1), (40, 1), (50, 1),
+    (66, 1), (80, 1), (100, 1), (150, 1), (200, 1), (250, 1), (500, 1), (1000, 1),
+]
+
+
+def _odds_std(p):
+    """A probability as the nearest standard fractional odds 'a:b' (favorites are
+    odds-on, e.g. 78.6% -> '2:7'; underdogs odds-against, e.g. 20% -> '4:1')."""
     if not p or p <= 0:
         return "—"
     if p >= 0.999:
-        return "0:1"
-    x = (1 - p) / p
-    return f"{x:.0f}:1" if x >= 10 else f"{x:.1f}:1"
+        return "1:1000"
+    f = (1 - p) / p                         # fractional value (odds against)
+    num, den = min(_ODDS_LADDER, key=lambda nd: abs(nd[0] / nd[1] - f))
+    return f"{num}:{den}"
 
 
 def _ago(dt):
@@ -820,7 +834,7 @@ if nav == "🏆 Title Odds":
             f"<div style='line-height:1.25'>"
             f"<div style='font-size:13px;color:#8b949e'>{lbl}</div>"
             f"<div style='font-size:1.75rem;font-weight:600'>{p * 100:.1f}%</div>"
-            f"<div style='font-size:11px;color:#7d8590'>{_odds_to_1(p)}</div>"
+            f"<div style='font-size:13px;color:#7d8590'>{_odds_std(p)}</div>"
             f"</div>", unsafe_allow_html=True)
 
     # most-likely road to the final

@@ -52,6 +52,14 @@ def flag(name: str | None) -> str:
     return _FLAGS.get(key, "")
 
 
+def twemoji_code(name: str | None) -> str:
+    """Twemoji asset filename stem for a team's flag (e.g. '1f1fa-1f1f8'), or ''."""
+    f = flag(name)
+    if not f:
+        return ""
+    return "-".join(f"{ord(c):x}" for c in f)
+
+
 def label(name: str | None) -> str:
     """'🇺🇸 United States' (falls back to just the name)."""
     f = flag(name)

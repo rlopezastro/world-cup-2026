@@ -4,6 +4,7 @@ Run it with:   streamlit run app.py
 (use the worldcup env: /path/to/envs/worldcup/bin/streamlit run app.py)
 """
 
+import base64
 import json
 import os
 from datetime import datetime, timedelta, timezone
@@ -22,6 +23,7 @@ CACHE = os.path.join(HERE, "cache.json")
 SAMPLE = os.path.join(HERE, "sample_data.json")
 META_F = os.path.join(HERE, "meta.json")
 SCORERS_CACHE = os.path.join(HERE, "scorers.json")
+FLAG_DIR = os.path.join(HERE, "assets", "flags")
 SQUADS_F = os.path.join(HERE, "squads.json")
 BETTING_F = os.path.join(HERE, "betting_odds.json")
 FAR = datetime(2100, 1, 1, tzinfo=timezone.utc)
@@ -46,6 +48,11 @@ st.markdown("""
 html, body, [class*="css"], [class*="st-"] {
   font-family: "Twemoji Country Flags", "Source Sans Pro", sans-serif !important;
 }
+/* Streamlit sets its own heading font, which lacks flag glyphs — re-assert the
+   flag web font on headings so flags render inside subheaders/#### too. */
+h1, h2, h3, h4, h5, h6, [data-testid="stHeading"] {
+  font-family: "Twemoji Country Flags", "Source Sans Pro", sans-serif !important;
+}
 /* the rule above must NOT override Streamlit's Material icon font, or icon glyphs
    (expander arrows, etc.) render as their literal ligature text. Re-assert it. */
 span[data-testid="stIconMaterial"], [data-testid="stExpanderToggleIcon"],
@@ -63,6 +70,24 @@ span[data-testid="stIconMaterial"], [data-testid="stExpanderToggleIcon"],
 @alt.theme.register("wc_flags", enable=True)
 def _wc_flags_theme():
     return {"config": {"font": '"Twemoji Country Flags", "Source Sans Pro", sans-serif'}}
+
+
+@st.cache_data(show_spinner=False)
+def flag_uri(name):
+    """Base64 data-URI for a team's bundled Twemoji flag PNG (or '' if none).
+
+    Lets st.dataframe show real flag images via ImageColumn — works on every OS
+    with no font dependency and no per-load network call (computed once, cached).
+    """
+    code = flags.twemoji_code(name)
+    if not code:
+        return ""
+    p = os.path.join(FLAG_DIR, f"{code}.png")
+    if not os.path.exists(p):
+        return ""
+    with open(p, "rb") as fh:
+        b64 = base64.b64encode(fh.read()).decode()
+    return f"data:image/png;base64,{b64}"
 
 
 # ---------------------------------------------------------------------------
@@ -748,9 +773,12 @@ if nav == "📊 Standings":
     st.subheader("Best third-placed teams — top 8 reach the Round of 32")
     tr = pd.DataFrame([
         {"Rank": i, "In?": "✅" if i <= 8 else "❌", "Group": r.group,
-         "Team": flags.label(r.team), "Pts": r.points, "GD": r.gd, "GF": r.gf}
+         "Flag": flag_uri(r.team), "Team": r.team,
+         "Pts": r.points, "GD": r.gd, "GF": r.gf}
         for i, r in enumerate(proj.thirds_ranked, 1)]).set_index("Rank")
-    st.dataframe(tr, width="stretch")
+    st.dataframe(tr, width="stretch",
+                 column_config={"Flag": st.column_config.ImageColumn(
+                     "", width="small", alignment="right")})
 
 # ---- Knockout ----
 if nav == "🗝️ Knockout":
@@ -846,13 +874,17 @@ if nav == "🏆 Title Odds":
                 "simulation.")
     else:
         prows = [{"Round": r["round"], "Reach": r["reach"] * 100,
-                  "Most likely opponent": flags.label(r["opp"]) if r["opp"] else "—",
+                  "Flag": flag_uri(r["opp"]) if r["opp"] else "",
+                  "Most likely opponent": r["opp"] if r["opp"] else "—",
                   "vs them": r["opp_p"] * 100, "Win round": r["advance"] * 100}
                  for r in tpath["rounds"]]
+        _path_cfg = {c: st.column_config.NumberColumn(c, format="%.0f%%")
+                     for c in ("Reach", "vs them", "Win round")}
+        _path_cfg["Flag"] = st.column_config.ImageColumn(
+            "", width="small", alignment="right")
         st.dataframe(
             pd.DataFrame(prows), width="stretch", hide_index=True,
-            column_config={c: st.column_config.NumberColumn(c, format="%.0f%%")
-                           for c in ("Reach", "vs them", "Win round")})
+            column_config=_path_cfg)
         st.caption("**Reach** = chance of playing that round · **Most likely opponent** "
                    "(and **vs them** = chance that's who you face, given you get there) · "
                    "**Win round** = chance of advancing past that round, if reached.")
@@ -1274,7 +1306,7 @@ if nav == "👟 Golden Boot":
                 fdf = pd.DataFrame([{
                     "Player": s.get("player") or "",
                     "Team": flags.label(s.get("team")),
-                    "⚽": s.get("goals", 0), "🅰": s.get("assists", 0),
+                    "Goals": s.get("goals", 0), "Assists": s.get("assists", 0),
                     "Pens": s.get("penalties", 0), "Apps": s.get("matches", 0),
                 } for s in scorers])
                 st.dataframe(fdf, width="stretch", hide_index=True)

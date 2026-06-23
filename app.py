@@ -88,28 +88,28 @@ def _shared_live_fetch(token):
     return [m.to_dict() for m in data.fetch_live(token)]
 
 
-@st.cache_data(show_spinner="Simulating…")
+@st.cache_data(show_spinner="🎲 Running qualification simulations… (a few seconds)")
 def cached_mc(path, mtime, n, weighting="fifa", odds_sig=0.0):
     matches, meta = _load(path, mtime)
     od = load_odds(odds_sig) if weighting == "odds" else None
     return analysis.monte_carlo(matches, meta, n=n, weighting=weighting, odds=od)
 
 
-@st.cache_data(show_spinner="Simulating the knockout bracket…")
+@st.cache_data(show_spinner="🏆 Simulating the whole tournament… (the heavy one — a few seconds)")
 def cached_tourney(path, mtime, n, weighting="fifa", odds_sig=0.0):
     matches, meta = _load(path, mtime)
     od = load_odds(odds_sig) if weighting == "odds" else None
     return analysis.tournament_odds(matches, meta, n=n, weighting=weighting, odds=od)
 
 
-@st.cache_data(show_spinner="Tracing the bracket…")
+@st.cache_data(show_spinner="🛣️ Tracing your team's most likely bracket path…")
 def cached_path(path, mtime, team, n, weighting="fifa", odds_sig=0.0):
     matches, meta = _load(path, mtime)
     od = load_odds(odds_sig) if weighting == "odds" else None
     return analysis.team_path(team, matches, meta, n=n, weighting=weighting, odds=od)
 
 
-@st.cache_data(show_spinner="Simulating…")
+@st.cache_data(show_spinner="🎲 Simulating each outcome of this game… (a few seconds)")
 def cached_importance(path, mtime, team, home, away, n, weighting="fifa", odds_sig=0.0):
     matches, meta = _load(path, mtime)
     od = load_odds(odds_sig) if weighting == "odds" else None

@@ -31,6 +31,23 @@ PANEL_H = 520                                      # scorer panel height (px)
 st.set_page_config(page_title="World Cup 2026 Scenarios", page_icon="🏆",
                    layout="wide")
 
+# Windows' emoji font omits flag glyphs, so 🇺🇸 etc. show as letter pairs there.
+# Load a web font that contains them; its unicode-range is limited to flag
+# codepoints (incl. England/Scotland/Wales subdivision flags), so normal text is
+# unaffected — it just fills in the flags on Windows/Chrome/Edge.
+st.markdown("""
+<style>
+@font-face {
+  font-family: "Twemoji Country Flags";
+  unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0061-E007F;
+  src: url("https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1/dist/TwemojiCountryFlags.woff2") format("woff2");
+}
+html, body, [class*="css"], [class*="st-"] {
+  font-family: "Twemoji Country Flags", "Source Sans Pro", sans-serif !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 # ---------------------------------------------------------------------------
 # data loading (cached, keyed on the file's mtime so a fetch busts the cache)
@@ -756,6 +773,12 @@ if nav == "🏆 Title Odds":
     cols = st.columns(len(_STAGE_COLS))
     for col, (key, lbl) in zip(cols, _STAGE_COLS):
         col.metric(lbl, f"{d[key] * 100:.1f}%")
+
+    # bookmakers' outright (to-win) price for this team, under the strip
+    bdec = load_odds(osig).get("outrights", {}).get(team)
+    if bdec:
+        st.caption(f"💰 Bookmakers — to win the tournament: **{bdec:.2f}** "
+                   f"(≈ {100 / bdec:.0f}% implied)")
 
     # most-likely road to the final
     st.markdown("##### 🛣️ Most likely road to the final")

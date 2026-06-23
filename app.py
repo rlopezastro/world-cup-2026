@@ -49,6 +49,14 @@ html, body, [class*="css"], [class*="st-"] {
 """, unsafe_allow_html=True)
 
 
+# Altair/Vega draws chart labels as SVG <text>, which won't inherit the CSS above —
+# so set the same flag web font as the chart font, making flags render in chart axis
+# labels (Golden Boot, Odds, etc.) on Windows too.
+@alt.theme.register("wc_flags", enable=True)
+def _wc_flags_theme():
+    return {"config": {"font": '"Twemoji Country Flags", "Source Sans Pro", sans-serif'}}
+
+
 # ---------------------------------------------------------------------------
 # data loading (cached, keyed on the file's mtime so a fetch busts the cache)
 # ---------------------------------------------------------------------------
@@ -74,6 +82,17 @@ def betting_sig():
 @st.cache_data(show_spinner=False)
 def load_odds(sig):
     return oddsmod.load_odds(BETTING_F)
+
+
+@st.cache_data(show_spinner=False)
+def load_raw_odds(sig):
+    """Raw betting file (decimal outright prices); load_odds() above only keeps the
+    de-vigged strengths, so this is used for showing actual bookmaker prices."""
+    try:
+        with open(BETTING_F) as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return {}
 
 
 def have_odds(sig=None):
@@ -775,7 +794,7 @@ if nav == "🏆 Title Odds":
         col.metric(lbl, f"{d[key] * 100:.1f}%")
 
     # bookmakers' outright (to-win) price for this team, under the strip
-    bdec = load_odds(osig).get("outrights", {}).get(team)
+    bdec = load_raw_odds(osig).get("outrights", {}).get(team)
     if bdec:
         st.caption(f"💰 Bookmakers — to win the tournament: **{bdec:.2f}** "
                    f"(≈ {100 / bdec:.0f}% implied)")

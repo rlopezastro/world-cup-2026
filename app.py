@@ -658,7 +658,7 @@ _auto_refresh()
 # (and stay cached afterwards). `nav` persists across reruns via its key, so a live
 # score update doesn't bounce you off your current section.
 NAV = ["📊 Standings", "🗝️ Knockout", "🎯 Team", "🆚 H2H", "🔮 Scenario",
-       "⚖️ Importance", "📈 Odds", "🏆 Title Odds", "⚽ Top Scorers", "📅 Schedule",
+       "⚖️ Importance", "📈 Odds", "🏆 Title Odds", "👟 Golden Boot", "📅 Schedule",
        "👕 Rosters", "🌍 FIFA Rank"]
 nav = st.radio("Section", NAV, horizontal=True, label_visibility="collapsed", key="nav")
 
@@ -1129,8 +1129,8 @@ if nav == "⚖️ Importance":
                   f"{res['swing']*100:.0f} pts")
 
 # ---- Scorers ----
-if nav == "⚽ Top Scorers":
-    st.subheader("⚽ Top scorers")
+if nav == "👟 Golden Boot":
+    st.subheader("👟 Golden Boot")
 
     # Prefer the cached file (no API call on load); only fetch live the first time
     # there's no cache yet. Use the Fetch buttons to refresh it on demand.

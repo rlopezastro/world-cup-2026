@@ -8,7 +8,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-11T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:12Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "A",
@@ -18,7 +20,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-12T02:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "B",
@@ -28,7 +32,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-12T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "D",
@@ -38,7 +44,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-13T01:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "B",
@@ -48,7 +56,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-13T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "C",
@@ -58,7 +68,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-13T22:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "C",
@@ -68,7 +80,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-14T01:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "D",
@@ -78,7 +92,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-14T04:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "E",
@@ -88,7 +104,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-14T17:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "F",
@@ -98,7 +116,9 @@
       "away_goals": 2,
       "kickoff": "2026-06-14T20:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "E",
@@ -108,7 +128,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-14T23:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "F",
@@ -118,7 +140,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-15T02:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "H",
@@ -128,7 +152,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-15T16:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "G",
@@ -138,7 +164,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-15T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "H",
@@ -148,7 +176,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-15T22:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "G",
@@ -158,7 +188,9 @@
       "away_goals": 2,
       "kickoff": "2026-06-16T01:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "I",
@@ -168,7 +200,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-16T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "I",
@@ -178,7 +212,9 @@
       "away_goals": 4,
       "kickoff": "2026-06-16T22:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "J",
@@ -188,7 +224,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-17T01:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "J",
@@ -198,7 +236,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-17T04:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
@@ -208,7 +248,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-17T17:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "L",
@@ -218,7 +260,9 @@
       "away_goals": 2,
       "kickoff": "2026-06-17T20:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "L",
@@ -228,7 +272,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-17T23:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
@@ -238,7 +284,9 @@
       "away_goals": 3,
       "kickoff": "2026-06-18T02:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "A",
@@ -248,7 +296,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-18T16:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "B",
@@ -258,7 +308,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-18T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "B",
@@ -268,7 +320,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-18T22:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "A",
@@ -278,7 +332,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-19T01:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "D",
@@ -288,7 +344,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-19T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "C",
@@ -298,7 +356,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-19T22:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "C",
@@ -308,7 +368,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-20T00:30:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-23T18:20:47Z"
+      "last_updated": "2026-06-23T18:20:47Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "D",
@@ -318,7 +380,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-20T03:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "F",
@@ -328,7 +392,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-20T17:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-23T13:25:01Z"
+      "last_updated": "2026-06-23T13:25:01Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "E",
@@ -338,7 +404,9 @@
       "away_goals": 1,
       "kickoff": "2026-06-20T20:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-21T08:25:00Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "E",
@@ -348,7 +416,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-21T00:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-21T08:25:00Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "F",
@@ -358,7 +428,9 @@
       "away_goals": 4,
       "kickoff": "2026-06-21T04:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-21T08:25:01Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "H",
@@ -368,7 +440,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-21T16:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-22T03:25:01Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "G",
@@ -378,7 +452,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-21T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-22T03:25:01Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "H",
@@ -388,7 +464,9 @@
       "away_goals": 2,
       "kickoff": "2026-06-21T22:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-22T03:25:01Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "G",
@@ -398,7 +476,9 @@
       "away_goals": 3,
       "kickoff": "2026-06-22T01:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-22T03:25:01Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "J",
@@ -408,7 +488,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-22T17:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-23T08:25:01Z"
+      "last_updated": "2026-06-23T08:25:01Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "I",
@@ -418,7 +500,9 @@
       "away_goals": 0,
       "kickoff": "2026-06-22T21:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-23T08:25:01Z"
+      "last_updated": "2026-06-23T08:25:01Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "I",
@@ -428,7 +512,9 @@
       "away_goals": 2,
       "kickoff": "2026-06-23T00:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-23T08:25:01Z"
+      "last_updated": "2026-06-23T08:25:01Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "J",
@@ -438,7 +524,9 @@
       "away_goals": 2,
       "kickoff": "2026-06-23T03:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-23T08:25:01Z"
+      "last_updated": "2026-06-23T08:25:01Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
@@ -448,17 +536,21 @@
       "away_goals": 0,
       "kickoff": "2026-06-23T17:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-23T20:40:13Z"
+      "last_updated": "2026-06-23T20:40:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "L",
       "home": "England",
       "away": "Ghana",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 0,
+      "away_goals": 0,
       "kickoff": "2026-06-23T20:00:00Z",
-      "status": "LIVE",
-      "last_updated": "2026-06-23T21:17:57Z"
+      "status": "FINISHED",
+      "last_updated": "2026-06-23T22:10:16Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "L",
@@ -468,7 +560,9 @@
       "away_goals": null,
       "kickoff": "2026-06-23T23:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
@@ -478,7 +572,9 @@
       "away_goals": null,
       "kickoff": "2026-06-24T02:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "B",
@@ -488,7 +584,9 @@
       "away_goals": null,
       "kickoff": "2026-06-24T19:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "B",
@@ -498,7 +596,9 @@
       "away_goals": null,
       "kickoff": "2026-06-24T19:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "C",
@@ -508,7 +608,9 @@
       "away_goals": null,
       "kickoff": "2026-06-24T22:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "C",
@@ -518,7 +620,9 @@
       "away_goals": null,
       "kickoff": "2026-06-24T22:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "A",
@@ -528,7 +632,9 @@
       "away_goals": null,
       "kickoff": "2026-06-25T01:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "A",
@@ -538,7 +644,9 @@
       "away_goals": null,
       "kickoff": "2026-06-25T01:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "E",
@@ -548,7 +656,9 @@
       "away_goals": null,
       "kickoff": "2026-06-25T20:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "E",
@@ -558,7 +668,9 @@
       "away_goals": null,
       "kickoff": "2026-06-25T20:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "F",
@@ -568,7 +680,9 @@
       "away_goals": null,
       "kickoff": "2026-06-25T23:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "F",
@@ -578,7 +692,9 @@
       "away_goals": null,
       "kickoff": "2026-06-25T23:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "D",
@@ -588,7 +704,9 @@
       "away_goals": null,
       "kickoff": "2026-06-26T02:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:13Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "D",
@@ -598,7 +716,9 @@
       "away_goals": null,
       "kickoff": "2026-06-26T02:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "I",
@@ -608,7 +728,9 @@
       "away_goals": null,
       "kickoff": "2026-06-26T19:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "I",
@@ -618,7 +740,9 @@
       "away_goals": null,
       "kickoff": "2026-06-26T19:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "H",
@@ -628,7 +752,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T00:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "H",
@@ -638,7 +764,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T00:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "G",
@@ -648,7 +776,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T03:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "G",
@@ -658,7 +788,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T03:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "L",
@@ -668,7 +800,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T21:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "L",
@@ -678,7 +812,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T21:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
@@ -688,7 +824,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T23:30:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
@@ -698,7 +836,9 @@
       "away_goals": null,
       "kickoff": "2026-06-27T23:30:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "J",
@@ -708,7 +848,9 @@
       "away_goals": null,
       "kickoff": "2026-06-28T02:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "J",
@@ -718,7 +860,9 @@
       "away_goals": null,
       "kickoff": "2026-06-28T02:00:00Z",
       "status": "TIMED",
-      "last_updated": "2026-06-20T15:20:13Z"
+      "last_updated": "2026-06-22T15:20:14Z",
+      "live_home": null,
+      "live_away": null
     }
   ]
 }

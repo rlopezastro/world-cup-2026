@@ -37,7 +37,8 @@ SCORERS = os.path.join(HERE, "scorers.json")
 BETTING = os.path.join(HERE, "betting_odds.json")
 
 ODDS_LEAD_MIN = 35      # fetch odds when a game kicks off within this many minutes
-ODDS_GAP_MIN = 30       # ...but not if odds were already fetched this recently
+ODDS_GAP_MIN = 45       # ...but not if odds were already fetched this recently (>lead,
+                        #    so the 5-min heartbeat fetches odds just once per kickoff)
 SCORES_PRE_MIN = 5      # start refreshing scores this long before kickoff
 SCORES_POST_MIN = 210   # ...until this long after (covers play + post-match settle)
 

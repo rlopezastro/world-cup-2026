@@ -7,6 +7,7 @@ Run it with:   streamlit run app.py
 import json
 import os
 from datetime import datetime, timedelta, timezone
+from fractions import Fraction
 
 import altair as alt
 import pandas as pd
@@ -367,6 +368,12 @@ def get_key(env_name, secret_name):
 # Streamlit secrets) to hide all key inputs / fetch controls and serve the bundled,
 # pre-fetched JSON only. Data is refreshed out-of-band by a scheduled job.
 PUBLISHED = bool(os.environ.get("WC2026_PUBLISHED") or _st_secret("published", False))
+
+
+def _frac_odds(dec):
+    """Decimal odds -> fractional 'a:b' (e.g. 35.0 -> '34:1', 2.5 -> '3:2')."""
+    fr = Fraction(dec - 1).limit_denominator(20)
+    return f"{fr.numerator}:{fr.denominator}"
 
 
 def _ago(dt):
@@ -803,8 +810,7 @@ if nav == "🏆 Title Odds":
     # bookmakers' outright (to-win) price for this team, under the strip
     bdec = load_raw_odds(osig).get("outrights", {}).get(team)
     if bdec:
-        st.caption(f"💰 Bookmakers — to win the tournament: **{bdec:.2f}** "
-                   f"(≈ {100 / bdec:.0f}% implied)")
+        st.caption(f"💰 Bookmakers — to win: **{_frac_odds(bdec)}**")
 
     # most-likely road to the final
     st.markdown("##### 🛣️ Most likely road to the final")
@@ -824,6 +830,14 @@ if nav == "🏆 Title Odds":
         st.caption("**Reach** = chance of playing that round · **Most likely opponent** "
                    "(and **vs them** = chance that's who you face, given you get there) · "
                    "**Win round** = chance of advancing past that round, if reached.")
+
+        # top-3 most likely opponents in the very next round (if they get there)
+        nxt = tpath["rounds"][0]
+        if nxt["dist"]:
+            many = len(nxt["dist"]) > 1
+            st.markdown(f"##### 🎯 Most likely {nxt['round']} opponent{'s' if many else ''}")
+            for opp, frac in nxt["dist"]:
+                st.markdown(f"- {flags.label(opp)} — **{frac * 100:.0f}%**")
 
     # championship contenders
     st.subheader("Who wins it? — championship probability")

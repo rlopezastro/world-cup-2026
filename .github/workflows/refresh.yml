@@ -5,7 +5,8 @@ name: Refresh data
 # windows. Commits any changed JSON, which makes Streamlit Cloud redeploy.
 on:
   schedule:
-    - cron: "*/15 * * * *"      # every 15 min (UTC); the script gates the API calls
+    - cron: "*/15 * * * *"      # heartbeat: only calls the API ~30 min before a game
+    - cron: "0 13 * * *"        # 06:00 Pacific (PDT = UTC-7): full morning refresh
   workflow_dispatch:            # manual run; optionally force a full refresh
     inputs:
       force:
@@ -35,7 +36,9 @@ jobs:
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python refresh_data.py ${{ (github.event_name == 'workflow_dispatch' && inputs.force) && '--force' || '' }}
+        # the 13:00-UTC schedule and a manual force=true both do a FULL refresh;
+        # the 15-min heartbeat is gated (odds only ~30 min before a game)
+        run: python refresh_data.py ${{ ((github.event_name == 'schedule' && github.event.schedule == '0 13 * * *') || (github.event_name == 'workflow_dispatch' && inputs.force)) && '--force' || '' }}
 
       - name: Commit if changed
         run: |

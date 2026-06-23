@@ -593,20 +593,17 @@ def calendar_html(matches, gsel, selected=None):
     return _CAL_CSS + "<div class='daywrap'>" + "".join(cards) + "</div>"
 
 
-@st.fragment
 def players_panel(scorers):
-    """Title + 'show top' slider + bar chart (flags on labels). Lives in a
-    fragment so the slider re-renders only this panel, not the whole app."""
-    ht = st.columns([1, 1.5])
-    ht[0].markdown("**🏃 Players**")
-    n = ht[1].slider("Show top", 5, len(scorers), min(15, len(scorers)),
-                     key="sc_n", label_visibility="collapsed",
-                     help="How many players to show")
+    """Bar chart of scorers with 2+ goals (flags on labels); the complete list is
+    in the table below. Falls back to the top 10 if no one has 2 yet."""
+    two_plus = [s for s in scorers if s.get("goals", 0) >= 2]
+    shown = two_plus or scorers[:10]
+    st.markdown("**🏃 Players (2+ goals)**" if two_plus else "**🏃 Players**")
     df = pd.DataFrame([{
         "Player": f"{flags.flag(s.get('team'))} {s.get('player') or ''}".strip(),
         "Team": flags.label(s.get("team")),
         "⚽": s.get("goals", 0), "🅰": s.get("assists", 0),
-    } for s in scorers[:n]])
+    } for s in shown])
     with st.container(height=PANEL_H):
         b = alt.Chart(df).encode(
             y=alt.Y("Player:N", sort="-x", title=None, axis=alt.Axis(labelOverlap=False)),

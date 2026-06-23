@@ -1,0 +1,5 @@
+# Present the app as a finished product, not a dev tool. "minimal" hides the
+# developer toolbar and its keyboard shortcuts (e.g. "C" = clear caches, "R" =
+# rerun) that otherwise fire on a stray keypress like Cmd+C.
+[client]
+toolbarMode = "minimal"

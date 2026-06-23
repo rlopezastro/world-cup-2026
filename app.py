@@ -736,11 +736,8 @@ if nav == "🏆 Title Odds":
         tw = "fifa"
     tprobs = cached_tourney(path, mtime, n_sims, tw, osig)
     st.caption(
-        f"Model: **{'Betting odds' if tw == 'odds' else 'FIFA ranking'}** · {n_sims:,} "
-        "full-tournament simulations. Each run plays the group stage, seeds the Round of "
-        "32 by the exact Annex-C table, then plays every knockout tie probabilistically "
-        "(Bradley-Terry). Probabilities are cumulative (reaching the final ⇒ reached the "
-        "QF). Set the team and simulation count in the sidebar.")
+        f"**{'Betting odds' if tw == 'odds' else 'FIFA ranking'}** model · {n_sims:,} "
+        "simulations. Each % is the chance of reaching that round or further.")
 
     # selected team's run
     d = tprobs[team]

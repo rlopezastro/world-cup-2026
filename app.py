@@ -88,14 +88,14 @@ def _shared_live_fetch(token):
     return [m.to_dict() for m in data.fetch_live(token)]
 
 
-@st.cache_data(show_spinner="🎲 Running qualification simulations… (a few seconds)")
+@st.cache_data(show_spinner="🎲 Running qualification simulations…")
 def cached_mc(path, mtime, n, weighting="fifa", odds_sig=0.0):
     matches, meta = _load(path, mtime)
     od = load_odds(odds_sig) if weighting == "odds" else None
     return analysis.monte_carlo(matches, meta, n=n, weighting=weighting, odds=od)
 
 
-@st.cache_data(show_spinner="🏆 Simulating the whole tournament… (the heavy one — a few seconds)")
+@st.cache_data(show_spinner="🏆 Simulating the whole tournament…")
 def cached_tourney(path, mtime, n, weighting="fifa", odds_sig=0.0):
     matches, meta = _load(path, mtime)
     od = load_odds(odds_sig) if weighting == "odds" else None
@@ -109,7 +109,7 @@ def cached_path(path, mtime, team, n, weighting="fifa", odds_sig=0.0):
     return analysis.team_path(team, matches, meta, n=n, weighting=weighting, odds=od)
 
 
-@st.cache_data(show_spinner="🎲 Simulating each outcome of this game… (a few seconds)")
+@st.cache_data(show_spinner="🎲 Simulating each outcome of this game…")
 def cached_importance(path, mtime, team, home, away, n, weighting="fifa", odds_sig=0.0):
     matches, meta = _load(path, mtime)
     od = load_odds(odds_sig) if weighting == "odds" else None
@@ -1018,9 +1018,9 @@ if nav == "📈 Odds":
     odds_loaded = have_odds(osig)
     wlabel = st.radio(
         "Weighting model", ["FIFA ranking", "Betting odds"], horizontal=True,
-        help="How team strength is set in the simulation. ‘Betting odds’ fits each "
-             "remaining game's goals to its de-vigged 1X2 price (and uses outright-"
-             "winner odds where no match price exists).")
+        help="How team strength is set in the simulation. ‘Betting odds’ uses "
+             "bookmakers' prices for each upcoming game (and tournament-winner odds "
+             "where a game's price isn't available).")
     odds_weighting = "odds" if wlabel == "Betting odds" else "fifa"
     if odds_weighting == "odds" and not odds_loaded:
         st.warning("No betting odds loaded — showing FIFA-weighted odds. Add a key or "
@@ -1123,8 +1123,10 @@ if nav == "⚖️ Importance":
 # ---- Scorers ----
 if nav == "⚽ Top Scorers":
     st.subheader("⚽ Top scorers")
-    st.caption("Per-match goal events (who scored in which game) aren't on the free "
-               "API tier. Player data refreshes when you Fetch in the sidebar.")
+    cap = "Tournament goal totals — not a breakdown of who scored in each match."
+    if not PUBLISHED:
+        cap += " Refresh player data with Fetch in the sidebar."
+    st.caption(cap)
 
     # Prefer the cached file (no API call on load); only fetch live the first time
     # there's no cache yet. Use the Fetch buttons to refresh it on demand.
@@ -1152,7 +1154,8 @@ if nav == "⚽ Top Scorers":
     with left:
         if not scorers:
             st.markdown("**🏃 Players**")
-            st.info("Add your token in the sidebar to load player scorers.")
+            st.info("Add your token in the sidebar to load player scorers."
+                    if not PUBLISHED else "Player scorer data isn't available yet.")
         else:
             players_panel(scorers)
     with right:
@@ -1198,8 +1201,8 @@ if nav == "👕 Rosters":
 
     squads = load_squads()
     if not squads:
-        st.info("No squad file found. Generate `squads.json` next to app.py by running "
-                "`python make_squads.py` (downloads the public-domain dataset once).")
+        st.info("Squad lists aren't available right now." if PUBLISHED
+                else "No squad file found. Run `python make_squads.py` to generate it.")
     else:
         names = sorted(squads)
         # Follow the sidebar team until the user picks a roster team manually:
@@ -1317,8 +1320,8 @@ if nav == "📅 Schedule":
 # ---- FIFA ranking ----
 if nav == "🌍 FIFA Rank":
     st.subheader("🌍 FIFA World Ranking")
-    st.caption(f"Snapshot: {fifa.SNAPSHOT} — stored locally (not live). Used as the "
-               "last-resort group tiebreaker and to weight the simulation.")
+    st.caption(f"Snapshot: {fifa.SNAPSHOT} — a fixed reference, not updated live. "
+               "Used as the final group tiebreaker and to weight the simulations.")
     gsel = group_picker("Group", "fifa_group")
     teams = [t for t in TEAMS if gsel == "All groups" or find_group(t, matches) == gsel]
     rows = sorted(((fifa.rank(t), t) for t in teams),

@@ -45,6 +45,13 @@ st.markdown("""
 html, body, [class*="css"], [class*="st-"] {
   font-family: "Twemoji Country Flags", "Source Sans Pro", sans-serif !important;
 }
+/* the rule above must NOT override Streamlit's Material icon font, or icon glyphs
+   (expander arrows, etc.) render as their literal ligature text. Re-assert it. */
+span[data-testid="stIconMaterial"], [data-testid="stExpanderToggleIcon"],
+.material-icons, .material-icons-outlined, [class*="material-symbols"] {
+  font-family: "Material Symbols Rounded", "Material Symbols Outlined",
+               "Material Icons" !important;
+}
 </style>
 """, unsafe_allow_html=True)
 

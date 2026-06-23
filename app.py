@@ -838,6 +838,7 @@ if nav == "🏆 Title Odds":
             f"</div>", unsafe_allow_html=True)
 
     # most-likely road to the final
+    st.markdown("<div style='height:22px'></div>", unsafe_allow_html=True)
     st.markdown("##### 🛣️ Most likely road to the final")
     tpath = cached_path(path, mtime, team, n_sims, tw, osig)
     if not tpath["rounds"]:

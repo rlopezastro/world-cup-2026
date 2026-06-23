@@ -1123,10 +1123,6 @@ if nav == "⚖️ Importance":
 # ---- Scorers ----
 if nav == "⚽ Top Scorers":
     st.subheader("⚽ Top scorers")
-    cap = "Tournament goal totals — not a breakdown of who scored in each match."
-    if not PUBLISHED:
-        cap += " Refresh player data with Fetch in the sidebar."
-    st.caption(cap)
 
     # Prefer the cached file (no API call on load); only fetch live the first time
     # there's no cache yet. Use the Fetch buttons to refresh it on demand.

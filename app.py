@@ -401,6 +401,22 @@ def pct(p, certain=False):
     return f"{round(p * 100)}%"
 
 
+def pct_sim(p):
+    """A simulated probability as text, never implying false certainty by rounding.
+    A would-be 100% reads '99%+' unless the sim was unanimous (p == 1.0); a would-be
+    0% reads '<1%' unless no sim produced it (p == 0). Used for conditional opponent
+    / road-to-the-final odds, which have no 🔒 'proven' flag."""
+    if p >= 1.0:
+        return "100%"
+    if p >= 0.995:
+        return "99%+"
+    if p <= 0.0:
+        return "0%"
+    if p < 0.005:
+        return "<1%"
+    return f"{round(p * 100)}%"
+
+
 # ---------------------------------------------------------------------------
 # saved API keys (so you don't paste them every time). Stored per-user, outside
 # the project folder, readable only by you (chmod 600) — never committed/shared.
@@ -953,15 +969,13 @@ if nav == "🏆 Title Odds":
         st.info(f"{flags.label(team)} is not projected to reach the Round of 32 in any "
                 "simulation.")
     else:
-        prows = [{"Round": r["round"], "Reach": r["reach"] * 100,
+        prows = [{"Round": r["round"], "Reach": pct_sim(r["reach"]),
                   "Flag": flag_uri(r["opp"]) if r["opp"] else "",
                   "Most likely opponent": r["opp"] if r["opp"] else "—",
-                  "vs them": r["opp_p"] * 100, "Win round": r["advance"] * 100}
+                  "vs them": pct_sim(r["opp_p"]), "Win round": pct_sim(r["advance"])}
                  for r in tpath["rounds"]]
-        _path_cfg = {c: st.column_config.NumberColumn(c, format="%.0f%%")
-                     for c in ("Reach", "vs them", "Win round")}
-        _path_cfg["Flag"] = st.column_config.ImageColumn(
-            "", width="small", alignment="right")
+        _path_cfg = {"Flag": st.column_config.ImageColumn(
+            "", width="small", alignment="right")}
         st.dataframe(
             pd.DataFrame(prows), width="stretch", hide_index=True,
             column_config=_path_cfg)
@@ -975,7 +989,7 @@ if nav == "🏆 Title Odds":
             many = len(nxt["dist"]) > 1
             st.markdown(f"##### 🎯 Most likely {nxt['round']} opponent{'s' if many else ''}")
             for opp, frac in nxt["dist"]:
-                st.markdown(f"- {flags.label(opp)} — **{frac * 100:.0f}%**")
+                st.markdown(f"- {flags.label(opp)} — **{pct_sim(frac)}**")
 
     # championship contenders
     st.subheader("Who wins it? — championship probability")

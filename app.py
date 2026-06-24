@@ -827,6 +827,13 @@ NAV = ["📊 Standings", "🗝️ Knockout", "🎯 Team", "🆚 H2H", "🔮 Scen
        "👕 Rosters", "🌍 FIFA Rank"]
 nav = st.radio("Section", NAV, horizontal=True, label_visibility="collapsed", key="nav")
 
+
+def page_header(title: str, help_text: str) -> None:
+    """Section title with a right-aligned 'What is this page?' hover-? on the same row."""
+    left, right = st.columns([4, 1], vertical_alignment="bottom")
+    left.subheader(title)
+    right.caption("What is this page?", help=help_text)
+
 # ---- Standings ----
 if nav == "📊 Standings":
     st.subheader("Group standings")
@@ -848,7 +855,11 @@ if nav == "📊 Standings":
 
 # ---- Knockout ----
 if nav == "🗝️ Knockout":
-    st.subheader("🗝️ Knockout bracket")
+    page_header("🗝️ Knockout bracket",
+                "The Round-of-32 bracket, with thirds placed via FIFA's official "
+                "Annex-C table. Choose how to fill it: only mathematically locked "
+                "qualifiers, today's standings, or a most-likely simulation (FIFA "
+                "ranking or betting odds).")
     _KO_MODES = {
         "Locked qualifiers only (exact)": "locked",
         "Projected — current standings": "standings",
@@ -903,7 +914,10 @@ _STAGE_COLS = [("r16", "Reach R16"), ("qf", "Reach QF"), ("sf", "Reach SF"),
                ("final", "Reach Final"), ("champion", "Win 🏆")]
 
 if nav == "🏆 Title Odds":
-    st.subheader("🏆 Title odds — deep-run probabilities")
+    page_header("🏆 Title odds — deep-run probabilities",
+                "Simulates the full tournament many times to estimate deep runs: each "
+                "team's chance of reaching the R16, QF, SF, final, and winning it all. "
+                "Choose the strength model (FIFA ranking or betting odds) below.")
     osig = betting_sig()
     twlabel = st.radio(
         "Weighting model", ["FIFA ranking", "Betting odds"], horizontal=True,
@@ -1146,10 +1160,11 @@ if nav == "🆚 H2H":
 
 # ---- Scenario ----
 if nav == "🔮 Scenario":
-    st.subheader("🔮 Scenario builder")
-    st.caption("Pick a matchup, set a hypothetical score, and add it. Stack as "
-               "many as you like (you can even rewrite games already played), then "
-               "see the projected effect.")
+    page_header("🔮 Scenario builder",
+                "Play out 'what if' results. Pick a fixture, set a hypothetical "
+                "score, and add it — stack as many as you like (you can even rewrite "
+                "games already played) — then see how the projected standings and "
+                "qualifiers change.")
     scn = st.session_state.setdefault("scenario", [])
 
     pick1, pick2 = st.columns(2)
@@ -1209,6 +1224,11 @@ if nav == "🔮 Scenario":
 
 # ---- Odds ----
 if nav == "📈 Odds":
+    page_header("📈 Odds",
+                "Monte-Carlo qualification odds for your selected team — chance to "
+                "win the group, finish top 2, and reach the Round of 32 — plus a table "
+                "of every team's R32 chance. 🔒 marks mathematically decided (exact) "
+                "outcomes; other percentages come from the simulation.")
     osig = betting_sig()
     odds_loaded = have_odds(osig)
     wlabel = st.radio(
@@ -1263,7 +1283,11 @@ if nav == "📈 Odds":
 
 # ---- Importance ----
 if nav == "⚖️ Importance":
-    st.subheader("How much does a game matter?")
+    page_header("How much does a game matter?",
+                "Measures how much a single upcoming game swings a team's fate. It "
+                "simulates every result of the chosen game and shows how the team's "
+                "qualification odds shift between outcomes — a big spread means the "
+                "game matters a lot.")
     rem = analysis.remaining(matches)
     if not rem:
         st.write("No games left to play.")

@@ -344,7 +344,7 @@
       "away_goals": 0,
       "kickoff": "2026-06-19T19:00:00Z",
       "status": "FINISHED",
-      "last_updated": "2026-06-20T08:25:01Z",
+      "last_updated": "2026-06-20T08:25:00Z",
       "live_home": null,
       "live_away": null
     },
@@ -556,13 +556,13 @@
       "group": "L",
       "home": "Panama",
       "away": "Croatia",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 0,
+      "away_goals": 1,
       "kickoff": "2026-06-23T23:00:00Z",
-      "status": "LIVE",
-      "last_updated": "2026-06-23T23:42:08Z",
-      "live_home": 0,
-      "live_away": 0
+      "status": "FINISHED",
+      "last_updated": "2026-06-24T01:04:18Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",

@@ -879,8 +879,8 @@ if nav == "🗝️ Knockout":
     _KO_MODES = {
         "Locked qualifiers only (exact)": "locked",
         "Projected — current standings": "standings",
-        "Projected — most likely (FIFA-ranking sim)": "fifa",
         "Projected — most likely (betting-odds sim)": "odds",
+        "Projected — most likely (FIFA-ranking sim)": "fifa",
     }
     choice = st.selectbox(
         "Populate the bracket from…", list(_KO_MODES),
@@ -936,7 +936,7 @@ if nav == "🏆 Title Odds":
                 "Choose the strength model (FIFA ranking or betting odds) below.")
     osig = betting_sig()
     twlabel = st.radio(
-        "Weighting model", ["FIFA ranking", "Betting odds"], horizontal=True,
+        "Weighting model", ["Betting odds", "FIFA ranking"], horizontal=True,
         key="title_weighting",
         help="Strength model for both the group-stage draws and the knockout ties.")
     tw = "odds" if twlabel == "Betting odds" else "fifa"
@@ -1246,7 +1246,7 @@ if nav == "📈 Odds":
     osig = betting_sig()
     odds_loaded = have_odds(osig)
     wlabel = st.radio(
-        "Weighting model", ["FIFA ranking", "Betting odds"], horizontal=True,
+        "Weighting model", ["Betting odds", "FIFA ranking"], horizontal=True,
         help="How team strength is set in the simulation. ‘Betting odds’ uses "
              "bookmakers' prices for each upcoming game (and tournament-winner odds "
              "where a game's price isn't available).")

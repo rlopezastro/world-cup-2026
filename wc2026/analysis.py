@@ -244,17 +244,53 @@ def _group_points_vectors(group, matches):
 def qualification_status(matches, meta=None, thirds_slots=8):
     """Return {team: {qualified, eliminated, medal, group}} where qualified /
     eliminated are only True when MATHEMATICALLY CERTAIN, and medal marks a
-    guaranteed group finish (🥇 winner, 🥈 runner-up, 🥉 third)."""
+    guaranteed group finish (🥇 winner, 🥈 runner-up, 🥉 third).
+
+    The best-8 third-place race is settled on points, with one refinement: when
+    BOTH a team and a rival group are fully played, their third-place teams are
+    compared on the full FIFA tiebreaker key (points, GD, GF, conduct, FIFA rank)
+    rather than points alone — so a team locks in (or out) as soon as goal
+    difference decides a points-tie, not only once points separate everyone.
+
+    Safety (never over-declares) is preserved because a rival's still-playable
+    goal difference is treated as unbounded: for qualification we over-state each
+    rival's best possible key (±∞ fillers) and require it to reach our WORST key;
+    for elimination we under-state each rival's worst key and require it to clear
+    our BEST. With unknown GD filled by ∞, both reduce to the old points-only
+    bounds; the exact-key comparison only ever kicks in between settled groups."""
+    meta = meta or {}
+    fifa = meta.get("fifa_ranking", {})
+    conduct = meta.get("conduct", {})
     groups = all_groups(matches)
-    third_max, third_min, bounds, names_by = {}, {}, {}, {}
+    INF = float("inf")
+
+    def _key(row):
+        # same ordering _rank_thirds uses; larger tuple = ranks higher
+        return (row.points, row.gd, row.gf,
+                conduct.get(row.team, 0), -fifa.get(row.team, 9999))
+
+    # per-group third-place info: points bounds over the remaining-game outcomes,
+    # plus the EXACT third-place key once the group is fully played (else None).
+    third_pmax, third_pmin, third_key, names_by, bounds = {}, {}, {}, {}, {}
+    key_of = {}                       # team -> exact key (only in settled groups)
     for g in groups:
         names, vectors = _group_points_vectors(g, matches)
         names_by[g] = names
+        gmatches = _group_matches(g, matches)
+        finished = bool(gmatches) and all(m.played for m in gmatches)
+        rows = group_rows(g, matches, meta) if finished else None
+        pos_of = {}
+        if finished:
+            for i, r in enumerate(rows, 1):
+                key_of[r.team] = _key(r)
+                pos_of[r.team] = i        # exact final place (GD/GF already settle ties)
         if len(names) < 3:
-            third_max[g], third_min[g] = -1, -1
+            third_pmax[g] = third_pmin[g] = -1
+            third_key[g] = None
         else:
             thirds = [sorted(v.values(), reverse=True)[2] for v in vectors]
-            third_max[g], third_min[g] = max(thirds), min(thirds)
+            third_pmax[g], third_pmin[g] = max(thirds), min(thirds)
+            third_key[g] = key_of[rows[2].team] if finished else None
         for t in names:
             max_worst, min_best, can3, pmin, pmax = 0, 99, False, 99, -1
             for v in vectors:
@@ -266,8 +302,15 @@ def qualification_status(matches, meta=None, thirds_slots=8):
                 min_best = min(min_best, best)
                 can3 = can3 or (best <= 3 <= worst)
                 pmin, pmax = min(pmin, tp), max(pmax, tp)
+            if finished:
+                # the group is decided — collapse points-tie ambiguity to the
+                # actual final place, so a team locked 3rd by GD isn't left looking
+                # like it "could still be 2nd or 4th" on points alone.
+                p = pos_of[t]
+                max_worst = min_best = p
+                can3 = (p == 3)
             bounds[t] = dict(group=g, max_worst=max_worst, min_best=min_best,
-                             can3=can3, pmin=pmin, pmax=pmax)
+                             can3=can3, pmin=pmin, pmax=pmax, key=key_of.get(t))
 
     out = {}
     for g in groups:
@@ -284,13 +327,29 @@ def qualification_status(matches, meta=None, thirds_slots=8):
                 eliminated, via = True, "group"
             else:
                 if b["max_worst"] <= 3:                   # guaranteed at least 3rd
-                    rivals = sum(1 for og in groups
-                                 if og != g and third_max[og] >= b["pmin"])
-                    if rivals <= thirds_slots - 1:        # ≤7 can reach/exceed → top 8
+                    # my worst key as a third (exact if settled, else low sentinel)
+                    t_worst = b["key"] or (b["pmin"], -INF, -INF, -INF, -INF)
+                    rivals = 0
+                    for og in groups:
+                        if og == g or third_pmax[og] < 0:
+                            continue
+                        # rival's best possible key (exact if settled, else ∞ GD)
+                        og_best = third_key[og] or (third_pmax[og], INF, INF, INF, INF)
+                        if og_best >= t_worst:            # could reach/exceed me
+                            rivals += 1
+                    if rivals <= thirds_slots - 1:        # ≤7 can pass me → top 8
                         qualified, via = True, "third"
                 if not qualified and b["min_best"] >= 3 and b["can3"]:
-                    ahead = sum(1 for og in groups
-                                if og != g and third_min[og] > b["pmax"])
+                    # my best key as a third (exact if settled, else high sentinel)
+                    t_best = b["key"] or (b["pmax"], INF, INF, INF, INF)
+                    ahead = 0
+                    for og in groups:
+                        if og == g or third_pmax[og] < 0:
+                            continue
+                        # rival's worst possible key (exact if settled, else low)
+                        og_worst = third_key[og] or (third_pmin[og], -INF, -INF, -INF, -INF)
+                        if og_worst > t_best:             # guaranteed above me
+                            ahead += 1
                     if ahead >= thirds_slots:             # ≥8 strictly ahead → out
                         eliminated, via = True, "third"
             out[t] = dict(qualified=qualified, eliminated=eliminated,

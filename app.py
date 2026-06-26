@@ -897,8 +897,11 @@ if nav == "🗝️ Knockout":
     if ko_mode == "locked":
         ov = overview(path, mtime)
         st.markdown(locked_bracket_html(ov), unsafe_allow_html=True)
+        # qualified but not yet placed in a real slot: 🥇/🥈 are seeded into a
+        # specific match; a qualified 🥉 third (slot waits on Annex-C) or a top-2
+        # team whose 1st/2nd isn't locked is through but unseeded.
         through_tbd = sorted(t for t, info in ov["team"].items()
-                             if info["qualified"] and not info["medal"])
+                             if info["qualified"] and info["medal"] not in ("🥇", "🥈"))
         if through_tbd:
             st.success("**Through, seeding not yet locked:** "
                        + ", ".join(flags.label(t) for t in through_tbd))

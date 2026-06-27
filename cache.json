@@ -748,25 +748,25 @@
       "group": "H",
       "home": "Uruguay",
       "away": "Spain",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 0,
+      "away_goals": 1,
       "kickoff": "2026-06-27T00:00:00Z",
-      "status": "LIVE",
-      "last_updated": "2026-06-27T00:11:29Z",
-      "live_home": 0,
-      "live_away": 0
+      "status": "FINISHED",
+      "last_updated": "2026-06-27T02:07:59Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "H",
       "home": "Cape Verde Islands",
       "away": "Saudi Arabia",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 0,
+      "away_goals": 0,
       "kickoff": "2026-06-27T00:00:00Z",
-      "status": "LIVE",
-      "last_updated": "2026-06-27T00:11:55Z",
-      "live_home": 0,
-      "live_away": 0
+      "status": "FINISHED",
+      "last_updated": "2026-06-27T02:09:26Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "G",
@@ -775,10 +775,10 @@
       "home_goals": null,
       "away_goals": null,
       "kickoff": "2026-06-27T03:00:00Z",
-      "status": "TIMED",
-      "last_updated": "2026-06-26T07:48:25Z",
-      "live_home": null,
-      "live_away": null
+      "status": "IN_PLAY",
+      "last_updated": "2026-06-27T04:18:05Z",
+      "live_home": 0,
+      "live_away": 2
     },
     {
       "group": "G",
@@ -787,10 +787,10 @@
       "home_goals": null,
       "away_goals": null,
       "kickoff": "2026-06-27T03:00:00Z",
-      "status": "TIMED",
-      "last_updated": "2026-06-26T07:48:25Z",
-      "live_home": null,
-      "live_away": null
+      "status": "IN_PLAY",
+      "last_updated": "2026-06-27T04:18:05Z",
+      "live_home": 1,
+      "live_away": 1
     },
     {
       "group": "L",

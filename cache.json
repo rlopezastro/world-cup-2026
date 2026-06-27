@@ -796,25 +796,25 @@
       "group": "L",
       "home": "Panama",
       "away": "England",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 0,
+      "away_goals": 2,
       "kickoff": "2026-06-27T21:00:00Z",
-      "status": "IN_PLAY",
-      "last_updated": "2026-06-27T22:45:02Z",
-      "live_home": 0,
-      "live_away": 2
+      "status": "FINISHED",
+      "last_updated": "2026-06-27T23:05:20Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "L",
       "home": "Croatia",
       "away": "Ghana",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 2,
+      "away_goals": 1,
       "kickoff": "2026-06-27T21:00:00Z",
-      "status": "IN_PLAY",
-      "last_updated": "2026-06-27T22:44:21Z",
-      "live_home": 1,
-      "live_away": 1
+      "status": "FINISHED",
+      "last_updated": "2026-06-27T23:04:51Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
@@ -823,10 +823,10 @@
       "home_goals": null,
       "away_goals": null,
       "kickoff": "2026-06-27T23:30:00Z",
-      "status": "TIMED",
-      "last_updated": "2026-06-26T15:20:14Z",
-      "live_home": null,
-      "live_away": null
+      "status": "LIVE",
+      "last_updated": "2026-06-27T23:45:11Z",
+      "live_home": 0,
+      "live_away": 0
     },
     {
       "group": "K",
@@ -835,10 +835,10 @@
       "home_goals": null,
       "away_goals": null,
       "kickoff": "2026-06-27T23:30:00Z",
-      "status": "TIMED",
-      "last_updated": "2026-06-26T15:20:14Z",
-      "live_home": null,
-      "live_away": null
+      "status": "LIVE",
+      "last_updated": "2026-06-27T23:45:22Z",
+      "live_home": 0,
+      "live_away": 0
     },
     {
       "group": "J",

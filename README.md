@@ -1,6 +1,8 @@
 # World Cup 2026 — Scenario Tool
 
-A small Python tool that answers, for any team in the group stage:
+Who's through, who's out, who they'll play next — the 2026 World Cup with live scores, exact qualification math, and the knockout bracket.
+
+For any team it answers:
 
 - **Are they through? Eliminated? Still alive?** (`status`)
 - **What do they need from their next game?** (`needs`)

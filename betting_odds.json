@@ -1,118 +1,118 @@
 {
   "matches": {
     "Croatia vs Ghana": {
-      "home": 1.9176,
-      "draw": 3.1524,
-      "away": 4.9616
+      "home": 1.89375,
+      "draw": 3.1079166666666667,
+      "away": 5.194583333333333
     },
     "Panama vs England": {
-      "home": 16.5884,
-      "draw": 8.6784,
-      "away": 1.1596
+      "home": 17.473333333333333,
+      "draw": 8.832916666666668,
+      "away": 1.1541666666666666
     },
     "Colombia vs Portugal": {
-      "home": 3.5136000000000003,
-      "draw": 3.8592,
-      "away": 2.0032
+      "home": 3.615,
+      "draw": 3.857083333333333,
+      "away": 1.9808333333333332
     },
     "Congo DR vs Uzbekistan": {
-      "home": 1.6056521739130434,
-      "draw": 4.1982608695652175,
-      "away": 5.552173913043478
+      "home": 1.6859090909090908,
+      "draw": 3.936818181818182,
+      "away": 5.15590909090909
     },
     "Algeria vs Austria": {
-      "home": 4.1728,
-      "draw": 2.1475999999999997,
-      "away": 2.9648000000000003
+      "home": 3.86125,
+      "draw": 2.1216666666666666,
+      "away": 3.237083333333333
     },
     "Jordan vs Argentina": {
-      "home": 17.8968,
-      "draw": 8.680399999999999,
-      "away": 1.1527999999999998
+      "home": 19.853333333333335,
+      "draw": 9.045833333333333,
+      "away": 1.1391666666666667
     },
     "South Africa vs Canada": {
-      "home": 5.4776,
-      "draw": 3.616,
-      "away": 1.7096
+      "home": 5.437083333333334,
+      "draw": 3.5975,
+      "away": 1.7245833333333334
     },
     "Brazil vs Japan": {
-      "home": 1.6995833333333332,
-      "draw": 3.8054166666666664,
-      "away": 5.2275
+      "home": 1.6979166666666667,
+      "draw": 3.8074999999999997,
+      "away": 5.210416666666666
     },
     "Germany vs Paraguay": {
-      "home": 1.38875,
-      "draw": 4.8950000000000005,
-      "away": 8.29125
+      "home": 1.3687500000000001,
+      "draw": 5.05,
+      "away": 8.691666666666666
     },
     "Netherlands vs Morocco": {
-      "home": 2.16,
-      "draw": 3.2308333333333334,
-      "away": 3.685
+      "home": 2.1308695652173912,
+      "draw": 3.2243478260869565,
+      "away": 3.7595652173913043
     },
     "Ivory Coast vs Norway": {
-      "home": 3.8508333333333336,
-      "draw": 3.59375,
-      "away": 1.97875
+      "home": 3.8074999999999997,
+      "draw": 3.56125,
+      "away": 1.9945833333333332
     },
     "France vs Sweden": {
       "home": 1.2891666666666668,
-      "draw": 5.72375,
-      "away": 10.668750000000001
+      "draw": 5.800833333333333,
+      "away": 10.65125
     },
     "United States vs Bosnia-Herzegovina": {
-      "home": 1.3776,
-      "draw": 4.8724,
-      "away": 8.7848
+      "home": 1.3812499999999999,
+      "draw": 4.8575,
+      "away": 8.699166666666667
     },
     "Australia vs Egypt": {
-      "home": 3.301304347826087,
-      "draw": 2.973913043478261,
-      "away": 2.468695652173913
+      "home": 3.25125,
+      "draw": 2.987083333333333,
+      "away": 2.481666666666667
     },
     "Argentina vs Cape Verde Islands": {
-      "home": 1.1608333333333334,
-      "draw": 7.702916666666667,
-      "away": 19.185
+      "home": 1.1543478260869564,
+      "draw": 7.880000000000001,
+      "away": 19.43130434782609
     }
   },
   "outrights": {
-    "France": 4.6,
-    "Argentina": 6.2,
+    "France": 4.65,
+    "Argentina": 6.1,
     "Spain": 7.5,
-    "England": 8.1,
+    "England": 7.9,
     "Portugal": 10.75,
     "Brazil": 14.25,
     "Netherlands": 17.5,
-    "Germany": 20.0,
-    "United States": 30.5,
-    "Norway": 34.5,
+    "Germany": 20.5,
+    "United States": 31.5,
+    "Norway": 35.5,
     "Belgium": 50.5,
     "Morocco": 53.0,
     "Japan": 53.0,
     "Colombia": 55.5,
     "Mexico": 60.5,
     "Switzerland": 76.0,
-    "Ecuador": 138.0,
+    "Ecuador": 143.0,
     "Senegal": 160.5,
-    "Croatia": 175.5,
-    "Ivory Coast": 210.5,
-    "Australia": 295.5,
-    "Canada": 275.5,
-    "Sweden": 305.5,
-    "Egypt": 340.5,
-    "Austria": 300.5,
-    "Ghana": 510.5,
-    "Paraguay": 575.5,
-    "Bosnia-Herzegovina": 715.5,
-    "Cape Verde Islands": 1000.5,
+    "Croatia": 160.5,
+    "Ivory Coast": 200.5,
+    "Canada": 270.5,
+    "Sweden": 315.5,
+    "Australia": 315.5,
+    "Egypt": 345.5,
+    "Austria": 305.5,
+    "Ghana": 520.5,
+    "Bosnia-Herzegovina": 720.5,
     "Algeria": 750.5,
+    "Paraguay": 625.5,
     "Iran": 750.5,
     "Uzbekistan": 1000.0,
     "South Korea": 700.5,
     "Scotland": 875.5,
+    "Cape Verde Islands": 1000.5,
     "South Africa": 750.5,
     "Congo DR": 875.5
   },
-  "fetched": "2026-06-27T09:27:45.241947+00:00"
+  "fetched": "2026-06-27T14:42:35.883363+00:00"
 }

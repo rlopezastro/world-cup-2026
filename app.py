@@ -259,7 +259,33 @@ def build_overview(ms, mt):
                 winner[g] = r.team
             elif pos == [2]:
                 runner[g] = r.team
-    return {"team": team, "winner": winner, "runner": runner}
+
+    # Lock a qualified third into its real R32 slot when FIFA's Annex-C assignment is
+    # invariant across every still-possible set of 8 qualifying thirds AND the winner
+    # it faces is itself locked (e.g. the Group-B third vs the Group-D winner even
+    # before all eight thirds are decided).
+    # A group is a CERTAIN third-contributor only if it's finished (its actual 3rd
+    # is known) AND that third is certain-qualified. An unfinished group's third
+    # team isn't fixed yet — whoever ends up 3rd might not qualify — so it's only
+    # 'contested' (it may or may not add a qualifying third).
+    finished_groups = {g for g in all_groups(ms)
+                       if all(m.played for m in ms if m.group == g)}
+    certain_in, contested = set(), set()
+    for g in all_groups(ms):
+        gteams = [t for t in q if q[t]["group"] == g]
+        if g in finished_groups and any(q[t]["qualified"] and q[t]["via"] == "third"
+                                        for t in gteams):
+            certain_in.add(g)
+        elif not all(q[t]["eliminated"] or q[t]["via"] == "top2" for t in gteams):
+            contested.add(g)                       # else: this group's third is out
+    third_slot = {}
+    for g3, gw in knockout.locked_third_winners(certain_in, contested).items():
+        wteam = winner.get(gw)                      # need the winner's identity locked
+        third_team = next((t for t in q if q[t]["group"] == g3
+                           and q[t]["qualified"] and q[t]["via"] == "third"), None)
+        if wteam and third_team:
+            third_slot[knockout._WINNER_MATCH[gw]] = third_team
+    return {"team": team, "winner": winner, "runner": runner, "third_slot": third_slot}
 
 
 @st.cache_data(show_spinner="Working out who's safe…")
@@ -296,7 +322,7 @@ _BRACKET_CSS = """<style>
 </style>"""
 
 
-def render_slot(slot, ov):
+def render_slot(slot, ov, mno=None):
     """A single R32 slot for the exact ‘locked qualifiers’ view: a name only once
     its seed is mathematically decided, otherwise an italic placeholder."""
     typ, val = slot
@@ -306,7 +332,9 @@ def render_slot(slot, ov):
     if typ == "R":
         t = ov["runner"].get(val)
         return f"🥈 {flags.label(t)}" if t else f"<i>Runner-up {val}</i>"
-    return f"<i>3rd of {'/'.join(val)}</i>"
+    # a qualified third whose Annex-C slot is already fixed shows by name
+    t = ov.get("third_slot", {}).get(mno)
+    return f"🥉 {flags.label(t)}" if t else f"<i>3rd of {'/'.join(val)}</i>"
 
 
 def locked_bracket_html(ov):
@@ -317,7 +345,7 @@ def locked_bracket_html(ov):
         boxes = []
         for mno in order:
             if feed is None:
-                l1, l2 = (render_slot(s, ov) for s in knockout.R32_MAP[mno])
+                l1, l2 = (render_slot(s, ov, mno) for s in knockout.R32_MAP[mno])
             else:
                 a, b = feed[mno]
                 l1, l2 = f"<i>Winner M{a}</i>", f"<i>Winner M{b}</i>"
@@ -898,10 +926,12 @@ if nav == "🗝️ Knockout":
         ov = overview(path, mtime)
         st.markdown(locked_bracket_html(ov), unsafe_allow_html=True)
         # qualified but not yet placed in a real slot: 🥇/🥈 are seeded into a
-        # specific match; a qualified 🥉 third (slot waits on Annex-C) or a top-2
-        # team whose 1st/2nd isn't locked is through but unseeded.
+        # specific match, and a third already locked into its Annex-C slot is too;
+        # everything else qualified-but-unplaced shows here.
+        placed = set(ov.get("third_slot", {}).values())
         through_tbd = sorted(t for t, info in ov["team"].items()
-                             if info["qualified"] and info["medal"] not in ("🥇", "🥈"))
+                             if info["qualified"] and info["medal"] not in ("🥇", "🥈")
+                             and t not in placed)
         if through_tbd:
             st.success("**Through, seeding not yet locked:** "
                        + ", ".join(flags.label(t) for t in through_tbd))

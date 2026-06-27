@@ -18,6 +18,7 @@ third-placed teams. This module:
 
 from __future__ import annotations
 
+import itertools
 import json
 import math
 import os
@@ -80,6 +81,40 @@ def _annexc() -> dict:
         except (OSError, ValueError):
             _ANNEXC = {"table": {}, "col_order": ["A", "B", "D", "E", "G", "I", "K", "L"]}
     return _ANNEXC
+
+
+def locked_third_winners(certain_in, contested) -> dict:
+    """{third_group: winner_group} for thirds whose Annex-C opponent is already fixed.
+
+    A third can be slotted before all 8 thirds are known if the group winner it
+    faces is the SAME in every still-possible set of 8 qualifying thirds. We test
+    that over a superset of the feasible sets (all ways to fill the open slots from
+    `contested`), so the result is conservative — it never locks a slot that could
+    still move, but may stay silent a little longer than strictly necessary.
+
+    `certain_in`: groups whose third is mathematically qualified.
+    `contested`:  groups whose third might still qualify (fill the remaining slots).
+    """
+    ac = _annexc()
+    table, col = ac["table"], ac["col_order"]
+    certain = sorted(certain_in)
+    need = 8 - len(certain)
+    if need < 0:
+        return {}
+    faces: dict[str, set] = {g: set() for g in certain}
+    seen_any = False
+    for extra in itertools.combinations(sorted(contested), need):
+        row = table.get("".join(sorted(set(certain) | set(extra))))
+        if row is None:
+            continue
+        seen_any = True
+        assign = {third_grp: winner for winner, third_grp in zip(col, row)}
+        for g in certain:
+            faces[g].add(assign.get(g))
+    if not seen_any:
+        return {}
+    return {g: next(iter(w)) for g, w in faces.items()
+            if len(w) == 1 and None not in w}
 
 
 # ---------------------------------------------------------------------------

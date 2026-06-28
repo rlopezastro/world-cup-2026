@@ -820,25 +820,25 @@
       "group": "K",
       "home": "Colombia",
       "away": "Portugal",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 0,
+      "away_goals": 0,
       "kickoff": "2026-06-27T23:30:00Z",
-      "status": "LIVE",
-      "last_updated": "2026-06-27T23:45:11Z",
-      "live_home": 0,
-      "live_away": 0
+      "status": "FINISHED",
+      "last_updated": "2026-06-28T01:38:21Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "K",
       "home": "Congo DR",
       "away": "Uzbekistan",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 3,
+      "away_goals": 1,
       "kickoff": "2026-06-27T23:30:00Z",
-      "status": "LIVE",
-      "last_updated": "2026-06-27T23:45:22Z",
-      "live_home": 0,
-      "live_away": 0
+      "status": "FINISHED",
+      "last_updated": "2026-06-28T01:41:57Z",
+      "live_home": null,
+      "live_away": null
     },
     {
       "group": "J",

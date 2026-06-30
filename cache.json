@@ -10,7 +10,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Mexico"
     },
     {
       "group": "A",
@@ -22,7 +24,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "South Korea"
     },
     {
       "group": "B",
@@ -34,7 +38,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "D",
@@ -46,7 +52,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "United States"
     },
     {
       "group": "B",
@@ -58,7 +66,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "C",
@@ -70,7 +80,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "C",
@@ -82,7 +94,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Scotland"
     },
     {
       "group": "D",
@@ -94,7 +108,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Australia"
     },
     {
       "group": "E",
@@ -106,7 +122,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Germany"
     },
     {
       "group": "F",
@@ -118,7 +136,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "E",
@@ -130,7 +150,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Ivory Coast"
     },
     {
       "group": "F",
@@ -142,7 +164,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Sweden"
     },
     {
       "group": "H",
@@ -154,7 +178,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "G",
@@ -166,7 +192,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "H",
@@ -178,7 +206,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "G",
@@ -190,7 +220,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "I",
@@ -202,7 +234,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "France"
     },
     {
       "group": "I",
@@ -214,7 +248,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Norway"
     },
     {
       "group": "J",
@@ -226,7 +262,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Argentina"
     },
     {
       "group": "J",
@@ -238,7 +276,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Austria"
     },
     {
       "group": "K",
@@ -250,7 +290,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "L",
@@ -262,7 +304,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "England"
     },
     {
       "group": "L",
@@ -274,7 +318,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Ghana"
     },
     {
       "group": "K",
@@ -286,7 +332,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Colombia"
     },
     {
       "group": "A",
@@ -298,7 +346,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "B",
@@ -310,7 +360,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Switzerland"
     },
     {
       "group": "B",
@@ -322,7 +374,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Canada"
     },
     {
       "group": "A",
@@ -334,7 +388,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Mexico"
     },
     {
       "group": "D",
@@ -346,7 +402,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "United States"
     },
     {
       "group": "C",
@@ -358,7 +416,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Morocco"
     },
     {
       "group": "C",
@@ -370,7 +430,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Brazil"
     },
     {
       "group": "D",
@@ -382,7 +444,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Paraguay"
     },
     {
       "group": "F",
@@ -394,7 +458,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Netherlands"
     },
     {
       "group": "E",
@@ -406,7 +472,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Germany"
     },
     {
       "group": "E",
@@ -418,7 +486,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "F",
@@ -430,7 +500,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Japan"
     },
     {
       "group": "H",
@@ -442,7 +514,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Spain"
     },
     {
       "group": "G",
@@ -454,7 +528,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "H",
@@ -466,7 +542,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "G",
@@ -478,7 +556,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Egypt"
     },
     {
       "group": "J",
@@ -490,7 +570,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Argentina"
     },
     {
       "group": "I",
@@ -502,7 +584,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "France"
     },
     {
       "group": "I",
@@ -514,7 +598,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Norway"
     },
     {
       "group": "J",
@@ -526,7 +612,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Algeria"
     },
     {
       "group": "K",
@@ -538,7 +626,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Portugal"
     },
     {
       "group": "L",
@@ -550,7 +640,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "L",
@@ -562,7 +654,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Croatia"
     },
     {
       "group": "K",
@@ -574,7 +668,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Colombia"
     },
     {
       "group": "B",
@@ -586,7 +682,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Switzerland"
     },
     {
       "group": "B",
@@ -598,7 +696,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Bosnia-Herzegovina"
     },
     {
       "group": "C",
@@ -610,7 +710,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Morocco"
     },
     {
       "group": "C",
@@ -622,7 +724,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Brazil"
     },
     {
       "group": "A",
@@ -634,7 +738,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Mexico"
     },
     {
       "group": "A",
@@ -646,7 +752,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "South Africa"
     },
     {
       "group": "E",
@@ -658,7 +766,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Ecuador"
     },
     {
       "group": "E",
@@ -670,7 +780,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Ivory Coast"
     },
     {
       "group": "F",
@@ -682,7 +794,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Netherlands"
     },
     {
       "group": "F",
@@ -694,7 +808,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "D",
@@ -706,7 +822,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Turkey"
     },
     {
       "group": "D",
@@ -718,7 +836,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "I",
@@ -730,7 +850,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "France"
     },
     {
       "group": "I",
@@ -742,7 +864,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Senegal"
     },
     {
       "group": "H",
@@ -754,7 +878,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Spain"
     },
     {
       "group": "H",
@@ -766,7 +892,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "G",
@@ -778,7 +906,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Belgium"
     },
     {
       "group": "G",
@@ -790,7 +920,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "L",
@@ -802,7 +934,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "England"
     },
     {
       "group": "L",
@@ -814,7 +948,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Croatia"
     },
     {
       "group": "K",
@@ -826,7 +962,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
     },
     {
       "group": "K",
@@ -838,7 +976,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Congo DR"
     },
     {
       "group": "J",
@@ -850,7 +990,9 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": "Argentina"
     },
     {
       "group": "J",
@@ -862,7 +1004,459 @@
       "status": "FINISHED",
       "last_updated": "2026-06-29T15:20:12Z",
       "live_home": null,
-      "live_away": null
+      "live_away": null,
+      "stage": null,
+      "winner": null
+    }
+  ],
+  "knockout": [
+    {
+      "group": null,
+      "home": "South Africa",
+      "away": "Canada",
+      "home_goals": 0,
+      "away_goals": 1,
+      "kickoff": "2026-06-28T19:00:00Z",
+      "status": "FINISHED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": "Canada"
+    },
+    {
+      "group": null,
+      "home": "Brazil",
+      "away": "Japan",
+      "home_goals": 2,
+      "away_goals": 1,
+      "kickoff": "2026-06-29T17:00:00Z",
+      "status": "FINISHED",
+      "last_updated": "2026-06-30T08:25:01Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": "Brazil"
+    },
+    {
+      "group": null,
+      "home": "Germany",
+      "away": "Paraguay",
+      "home_goals": 4,
+      "away_goals": 5,
+      "kickoff": "2026-06-29T20:30:00Z",
+      "status": "FINISHED",
+      "last_updated": "2026-06-30T02:22:13Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": "Paraguay"
+    },
+    {
+      "group": null,
+      "home": "Netherlands",
+      "away": "Morocco",
+      "home_goals": 3,
+      "away_goals": 4,
+      "kickoff": "2026-06-30T01:00:00Z",
+      "status": "FINISHED",
+      "last_updated": "2026-06-30T06:02:35Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": "Morocco"
+    },
+    {
+      "group": null,
+      "home": "Ivory Coast",
+      "away": "Norway",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-06-30T17:00:00Z",
+      "status": "IN_PLAY",
+      "last_updated": "2026-06-30T17:50:26Z",
+      "live_home": 0,
+      "live_away": 1,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "France",
+      "away": "Sweden",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-06-30T21:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Mexico",
+      "away": "Ecuador",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-01T01:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "England",
+      "away": "Congo DR",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-01T16:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Belgium",
+      "away": "Senegal",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-01T20:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "United States",
+      "away": "Bosnia-Herzegovina",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-02T00:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Spain",
+      "away": "Austria",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-02T19:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Portugal",
+      "away": "Croatia",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-02T23:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Switzerland",
+      "away": "Algeria",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-03T03:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Australia",
+      "away": "Egypt",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-03T18:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Argentina",
+      "away": "Cape Verde Islands",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-03T22:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Colombia",
+      "away": "Ghana",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-04T01:30:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_32",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Canada",
+      "away": "Morocco",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-04T17:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-30T07:51:46Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Paraguay",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-04T21:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-30T04:22:06Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "Brazil",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-05T20:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T21:32:39Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-06T00:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-06T19:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-07T00:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-07T16:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-07T20:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "LAST_16",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-09T20:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "QUARTER_FINALS",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-10T19:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "QUARTER_FINALS",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-11T21:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "QUARTER_FINALS",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-12T01:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "QUARTER_FINALS",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-14T19:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "SEMI_FINALS",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-15T19:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "SEMI_FINALS",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-18T21:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "THIRD_PLACE",
+      "winner": null
+    },
+    {
+      "group": null,
+      "home": "TBD",
+      "away": "TBD",
+      "home_goals": null,
+      "away_goals": null,
+      "kickoff": "2026-07-19T19:00:00Z",
+      "status": "TIMED",
+      "last_updated": "2026-06-29T15:20:12Z",
+      "live_home": null,
+      "live_away": null,
+      "stage": "FINAL",
+      "winner": null
     }
   ]
 }

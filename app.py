@@ -345,20 +345,80 @@ def render_slot(slot, ov, mno=None):
     return f"🥉 {flags.label(t)}" if t else f"<i>3rd of {'/'.join(val)}</i>"
 
 
-def locked_bracket_html(ov):
-    """The original exact bracket: only mathematically locked seeds are placed;
-    third-place slots and undecided seeds stay as italic placeholders."""
+def _exact_results(ov, ko_results):
+    """The bracket's *certain* state: locked seeds, plus real knockout results
+    advanced forward. An unplayed tie stays undecided (winner=None) — nothing is
+    predicted. Returns {match_no: {"a","b","winner","match"}}."""
+    def slot_team(slot, mno):
+        typ, val = slot
+        if typ == "W":
+            return ov["winner"].get(val)
+        if typ == "R":
+            return ov["runner"].get(val)
+        return ov.get("third_slot", {}).get(mno)         # a locked Annex-C third
+
+    def decide(a, b):
+        if a and b:
+            km = ko_results.get(frozenset((a, b)))
+            if km is not None and km.winner:             # actually played -> a fact
+                return km.winner, km
+            return None, km                  # known matchup, not yet decided (km may be live)
+        return None, None
+
+    res = {}
+    for mno, (s1, s2) in knockout.R32_MAP.items():
+        a, b = slot_team(s1, mno), slot_team(s2, mno)
+        w, km = decide(a, b)
+        res[mno] = {"a": a, "b": b, "winner": w, "match": km}
+    for _title, order, feed in knockout.ROUNDS:
+        if feed is None:
+            continue
+        for mno in order:
+            fa, fb = feed[mno]
+            w, km = decide(res[fa]["winner"], res[fb]["winner"])
+            res[mno] = {"a": res[fa]["winner"], "b": res[fb]["winner"],
+                        "winner": w, "match": km}
+    return res
+
+
+def locked_bracket_html(ov, ko_results=None):
+    """The exact bracket: mathematically locked seeds, with real knockout results
+    shown (score, winner bolded) and actual winners advanced. Unplayed ties stay as
+    the matchup or an italic placeholder — never a prediction."""
+    res = _exact_results(ov, ko_results or {})
+    _MEDAL = {"W": "🥇 ", "R": "🥈 ", "3": "🥉 "}
     cols = []
     for title, order, feed in knockout.ROUNDS:
         boxes = []
         for mno in order:
-            if feed is None:
-                l1, l2 = (render_slot(s, ov, mno) for s in knockout.R32_MAP[mno])
-            else:
-                a, b = feed[mno]
-                l1, l2 = f"<i>Winner M{a}</i>", f"<i>Winner M{b}</i>"
-            boxes.append(f"<div class='m'><div class='mn'>M{mno}</div>"
-                         f"<div class='t'>{l1}</div><div class='t'>{l2}</div></div>")
+            d = res[mno]
+            km, wn = d["match"], d["winner"]
+            finished = km is not None and km.winner is not None
+            live = km is not None and km.is_live
+
+            def comp(side):
+                team = d["a"] if side == 0 else d["b"]
+                if not team:                              # unknown -> placeholder
+                    if feed is None:
+                        return f"<div class='t'>" \
+                               f"{render_slot(knockout.R32_MAP[mno][side], ov, mno)}</div>"
+                    return f"<div class='t'><i>Winner M{feed[mno][side]}</i></div>"
+                label = flags.label(team)
+                if feed is None:                          # R32 seeds carry their medal
+                    label = _MEDAL.get(knockout.R32_MAP[mno][side][0], "") + label
+                g = None
+                if finished:
+                    g = km.home_goals if team == km.home else km.away_goals
+                elif live:
+                    g = km.live_home if team == km.home else km.live_away
+                if g is not None:
+                    cls = "win" if team == wn else "lose"
+                    return f"<div class='t {cls}'>{label} <b>{g}</b></div>"
+                return f"<div class='t'>{label}</div>"
+
+            mn = f"M{mno}{' 🔴' if live else ''}"
+            boxes.append(f"<div class='m'><div class='mn'>{mn}</div>"
+                         f"{comp(0)}{comp(1)}</div>")
         cols.append(f"<div class='col'><div class='rhd'>{title}</div>"
                     f"<div class='rnd'>{''.join(boxes)}</div></div>")
     return _BRACKET_CSS + "<div class='bk'>" + "".join(cols) + "</div>"
@@ -953,7 +1013,8 @@ if nav == "🗝️ Knockout":
 
     if ko_mode == "locked":
         ov = overview(path, mtime)
-        st.markdown(locked_bracket_html(ov), unsafe_allow_html=True)
+        ko_idx = knockout.index_knockout(load_ko(path, mtime))
+        st.markdown(locked_bracket_html(ov, ko_idx), unsafe_allow_html=True)
         # qualified but not yet placed in a real slot: 🥇/🥈 are seeded into a
         # specific match, and a third already locked into its Annex-C slot is too;
         # everything else qualified-but-unplaced shows here.
@@ -965,10 +1026,11 @@ if nav == "🗝️ Knockout":
             st.success("**Through, seeding not yet locked:** "
                        + ", ".join(flags.label(t) for t in through_tbd))
         st.caption("Exact view: 🥇 a guaranteed group winner and 🥈 a team locked into "
-                   "2nd drop into their real slots; *italic* = not yet decided. Third-place "
-                   "slots show their candidate groups — the actual assignment follows FIFA’s "
-                   "Annex-C table, fixed once every group finishes. Switch the dropdown above "
-                   "for a fully projected, played-out bracket.")
+                   "2nd drop into their real slots, 🥉 thirds by FIFA’s Annex-C table; "
+                   "*italic* = not yet decided. **Real knockout results are shown with their "
+                   "score and the winner advanced** — but unplayed ties are left undecided, "
+                   "never predicted. Switch the dropdown above for a fully projected, "
+                   "played-out bracket.")
     else:
         ko_games = load_ko(path, mtime)
         if ko_mode == "standings":

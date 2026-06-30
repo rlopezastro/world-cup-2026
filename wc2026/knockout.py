@@ -221,44 +221,81 @@ def _resolve_slot(slot, winner, runner, third_slot, mno):
     return third_slot.get(mno)              # a third-slot is keyed by its match no
 
 
-def play_out(seed: dict, strength: Callable[[str], float]) -> dict:
-    """Advance the favourite of every tie to a champion.
+def index_knockout(ko_matches) -> dict:
+    """{frozenset({home, away}): Match} for knockout fixtures whose teams are known.
+    Lets the play-out look up a real result/fixture by the two teams in a tie."""
+    idx = {}
+    for m in ko_matches or []:
+        if m.home and m.away and "TBD" not in (m.home, m.away):
+            idx[frozenset((m.home, m.away))] = m
+    return idx
 
-    Returns {match_no: {"a", "b", "winner"}} for every match in every round
-    (None where a competitor isn't known yet), plus "champion"."""
+
+def odds_favorites(odds) -> dict:
+    """{frozenset({a, b}): favourite} from per-match 1X2 probabilities (the draw is
+    irrelevant in a knockout, so the favourite is whoever's more likely to win)."""
+    out = {}
+    for key, p in ((odds or {}).get("matches") or {}).items():
+        if " vs " not in key:
+            continue
+        home, away = key.split(" vs ", 1)
+        out[frozenset((home, away))] = home if p.get("H", 0) >= p.get("A", 0) else away
+    return out
+
+
+def play_out(seed: dict, strength: Callable[[str], float],
+             ko_results=None, ko_odds=None) -> dict:
+    """Advance one team out of every tie to a champion.
+
+    Each tie is resolved by priority: a real played result (`ko_results`, keyed by
+    team pair) → the per-match betting favourite (`ko_odds`) → the stronger team by
+    `strength` (FIFA ranking or outright odds). Returns {match_no: {"a","b","winner",
+    "match"}} for every match in every round ("match" is the real fixture if one
+    exists — for showing a score/live state), plus "champion"."""
     third_slot = _assign_thirds(seed["thirds"])
     w, r = seed["winner"], seed["runner"]
+    ko_results = ko_results or {}
+    ko_odds = ko_odds or {}
     results: dict[int, dict] = {}
 
-    def fav(a, b):
-        if a and b:
-            return a if strength(a) >= strength(b) else b
-        return a or b
+    def decide(a, b):
+        if not (a and b):
+            return a or b, None
+        km = ko_results.get(frozenset((a, b)))
+        if km is not None and km.winner:                 # actual played result
+            return km.winner, km
+        fav = ko_odds.get(frozenset((a, b)))             # per-match betting favourite
+        if not fav:                                      # fall back to strength model
+            fav = a if strength(a) >= strength(b) else b
+        return fav, km                  # km may be a live/scheduled fixture (no winner)
+
+    def record(mno, a, b):
+        win, km = decide(a, b)
+        results[mno] = {"a": a, "b": b, "winner": win, "match": km}
 
     for mno, (s1, s2) in R32_MAP.items():
-        a = _resolve_slot(s1, w, r, third_slot, mno)
-        b = _resolve_slot(s2, w, r, third_slot, mno)
-        results[mno] = {"a": a, "b": b, "winner": fav(a, b)}
+        record(mno, _resolve_slot(s1, w, r, third_slot, mno),
+               _resolve_slot(s2, w, r, third_slot, mno))
 
     for _title, order, feed in ROUNDS:
         if feed is None:
             continue
         for mno in order:
             fa, fb = feed[mno]
-            a = results[fa]["winner"]
-            b = results[fb]["winner"]
-            results[mno] = {"a": a, "b": b, "winner": fav(a, b)}
+            record(mno, results[fa]["winner"], results[fb]["winner"])
 
     return {"results": results, "third_slot": third_slot,
             "winner": w, "runner": r, "champion": results[104]["winner"]}
 
 
 def bracket_view(matches, meta, mode: str = "standings",
-                 probs=None, odds=None) -> dict:
+                 probs=None, odds=None, knockout=None) -> dict:
     """One-call entry point for the UI.
 
     mode: "standings" | "fifa" | "odds". For the two simulation modes pass the
     corresponding monte_carlo `probs`; "odds" also uses `odds` for play-out strength.
+    `knockout` is the list of real knockout fixtures/results, which override
+    predictions where games have been played (and supply live scores).
     """
     if mode == "standings":
         seed = _seed_standings(matches, meta)
@@ -269,6 +306,8 @@ def bracket_view(matches, meta, mode: str = "standings",
         seed = _seed_from_probs(matches, meta, probs)
         weighting = mode                      # "fifa" or "odds"
     strength = make_strength(meta, weighting, odds)
-    out = play_out(seed, strength)
+    ko_results = index_knockout(knockout)
+    ko_odds = odds_favorites(odds) if (mode == "odds" and odds) else {}
+    out = play_out(seed, strength, ko_results, ko_odds)
     out["mode"] = mode
     return out

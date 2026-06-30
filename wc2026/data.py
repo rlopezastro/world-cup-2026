@@ -23,7 +23,7 @@ DEFAULT_COMPETITION = "WC"
 
 @dataclass
 class Match:
-    group: str                      # single letter, e.g. "A"
+    group: Optional[str]            # single letter "A"–"L"; None for knockout games
     home: str
     away: str
     home_goals: Optional[int] = None
@@ -36,6 +36,10 @@ class Match:
     # "if result stands" view. None unless the match is currently live.
     live_home: Optional[int] = None
     live_away: Optional[int] = None
+    # knockout-only: the round (e.g. "LAST_32") and the team that actually advanced
+    # (resolved from the source's winner field, so it already accounts for ET/pens).
+    stage: Optional[str] = None
+    winner: Optional[str] = None
 
     @property
     def played(self) -> bool:
@@ -50,8 +54,9 @@ class Match:
 
     @classmethod
     def from_dict(cls, d: dict) -> "Match":
+        g = d.get("group")
         return cls(
-            group=str(d["group"]).upper(),
+            group=str(g).upper() if g else None,
             home=d["home"],
             away=d["away"],
             home_goals=d.get("home_goals"),
@@ -61,6 +66,8 @@ class Match:
             last_updated=d.get("last_updated"),
             live_home=d.get("live_home"),
             live_away=d.get("live_away"),
+            stage=d.get("stage"),
+            winner=d.get("winner"),
         )
 
 
@@ -108,36 +115,65 @@ def _request_json(url: str, token: str, max_retries: int = 3) -> dict:
     raise RuntimeError("Exceeded retry budget talking to football-data.org")
 
 
-def fetch_live(token: str, competition: str = DEFAULT_COMPETITION) -> list[Match]:
-    """Pull all group-stage matches from football-data.org."""
-    url = f"{API_BASE}/competitions/{competition}/matches"
-    payload = _request_json(url, token)
+KNOCKOUT_STAGES = ("LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS",
+                   "THIRD_PLACE", "FINAL")
 
-    matches: list[Match] = []
+
+def _match_from_raw(m: dict, group: Optional[str]) -> Match:
+    """Build a Match from one football-data.org fixture record. `group` is the
+    normalized group letter, or None for a knockout fixture (then `stage` is set)."""
+    ft = (m.get("score") or {}).get("fullTime") or {}
+    status = m.get("status")
+    finished = status == "FINISHED"
+    live = status in ("IN_PLAY", "PAUSED", "LIVE")
+    home = (m.get("homeTeam") or {}).get("name") or "TBD"
+    away = (m.get("awayTeam") or {}).get("name") or "TBD"
+    # the source's winner already reflects extra time / penalties for knockouts
+    wkey = (m.get("score") or {}).get("winner")
+    winner = home if wkey == "HOME_TEAM" else away if wkey == "AWAY_TEAM" else None
+    return Match(
+        group=group,
+        stage=None if group else m.get("stage"),
+        home=home,
+        away=away,
+        home_goals=ft.get("home") if finished else None,
+        away_goals=ft.get("away") if finished else None,
+        winner=winner if finished else None,
+        kickoff=m.get("utcDate"),
+        status=status,
+        last_updated=m.get("lastUpdated"),
+        # running score during play (0–0 default so a kicked-off game shows 0)
+        live_home=(ft.get("home") or 0) if live else None,
+        live_away=(ft.get("away") or 0) if live else None,
+    )
+
+
+def _fetch_split(token: str, competition: str) -> tuple[list[Match], list[Match]]:
+    """One API call -> (group_stage matches, knockout matches)."""
+    payload = _request_json(f"{API_BASE}/competitions/{competition}/matches", token)
+    groups, knockout = [], []
     for m in payload.get("matches", []):
         group = _norm_group(m.get("group") or m.get("stage"))
-        if group is None:                       # skip knockout / playoff fixtures
-            continue
-        ft = (m.get("score") or {}).get("fullTime") or {}
-        status = m.get("status")
-        finished = status == "FINISHED"
-        live = status in ("IN_PLAY", "PAUSED", "LIVE")
-        matches.append(
-            Match(
-                group=group,
-                home=(m.get("homeTeam") or {}).get("name") or "TBD",
-                away=(m.get("awayTeam") or {}).get("name") or "TBD",
-                home_goals=ft.get("home") if finished else None,
-                away_goals=ft.get("away") if finished else None,
-                kickoff=m.get("utcDate"),
-                status=status,
-                last_updated=m.get("lastUpdated"),
-                # running score during play (0–0 default so a kicked-off game shows 0)
-                live_home=(ft.get("home") or 0) if live else None,
-                live_away=(ft.get("away") or 0) if live else None,
-            )
-        )
-    return matches
+        if group is not None:
+            groups.append(_match_from_raw(m, group))
+        elif m.get("stage") in KNOCKOUT_STAGES:
+            knockout.append(_match_from_raw(m, None))
+    return groups, knockout
+
+
+def fetch_live(token: str, competition: str = DEFAULT_COMPETITION) -> list[Match]:
+    """Pull all group-stage matches from football-data.org."""
+    return _fetch_split(token, competition)[0]
+
+
+def fetch_knockout(token: str, competition: str = DEFAULT_COMPETITION) -> list[Match]:
+    """Pull the knockout-stage fixtures/results (R32 → Final)."""
+    return _fetch_split(token, competition)[1]
+
+
+def fetch_all(token: str, competition: str = DEFAULT_COMPETITION):
+    """Pull both group and knockout matches in a single request: (group, knockout)."""
+    return _fetch_split(token, competition)
 
 
 def fetch_scorers(token: str, competition: str = DEFAULT_COMPETITION,
@@ -175,9 +211,24 @@ def load_file(path: str) -> list[Match]:
     return [Match.from_dict(d) for d in items]
 
 
-def save_file(path: str, matches: list[Match]) -> None:
+def load_knockout(path: str) -> list[Match]:
+    """Knockout fixtures stored alongside the group matches (empty if none)."""
+    try:
+        with open(path) as fh:
+            raw = json.load(fh)
+    except (OSError, ValueError):
+        return []
+    items = raw.get("knockout", []) if isinstance(raw, dict) else []
+    return [Match.from_dict(d) for d in items]
+
+
+def save_file(path: str, matches: list[Match],
+              knockout: Optional[list[Match]] = None) -> None:
+    out = {"matches": [m.to_dict() for m in matches]}
+    if knockout is not None:
+        out["knockout"] = [m.to_dict() for m in knockout]
     with open(path, "w") as fh:
-        json.dump({"matches": [m.to_dict() for m in matches]}, fh, indent=2)
+        json.dump(out, fh, indent=2)
 
 
 def load_meta(path: str) -> dict:

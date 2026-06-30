@@ -90,10 +90,11 @@ def cmd_fetch(args):
     if not token:
         sys.exit("Need an API token: --token, FOOTBALL_DATA_TOKEN env var, or a saved key.\n"
                  "Get a free key at https://www.football-data.org/client/register")
-    matches = data.fetch_live(token)
-    data.save_file(DEFAULT_CACHE, matches)
+    matches, knockout = data.fetch_all(token)
+    data.save_file(DEFAULT_CACHE, matches, knockout=knockout)
     played = sum(1 for m in matches if m.played)
-    print(f"Fetched {len(matches)} group matches ({played} played) -> {DEFAULT_CACHE}")
+    print(f"Fetched {len(matches)} group matches ({played} played) and "
+          f"{len(knockout)} knockout matches -> {DEFAULT_CACHE}")
 
 
 def _ago(dt, now):

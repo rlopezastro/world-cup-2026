@@ -148,6 +148,12 @@ def _load(path, mtime):
     return data.load_file(path), data.load_meta(META_F)
 
 
+@st.cache_data(show_spinner=False)
+def load_ko(path, mtime):
+    """Real knockout fixtures/results saved alongside the group matches."""
+    return data.load_knockout(path)
+
+
 def load():
     path = _data_path()
     return (*_load(path, os.path.getmtime(path)), path)
@@ -199,8 +205,10 @@ def _in_live_window(matches):
 @st.cache_data(ttl=110, show_spinner=False)
 def _shared_live_fetch(token):
     """One live-scores fetch shared across all viewer sessions (TTL-deduped), so N
-    concurrent viewers still cost ~1 API request per ~2-minute refresh cycle."""
-    return [m.to_dict() for m in data.fetch_live(token)]
+    concurrent viewers still cost ~1 API request per ~2-minute refresh cycle.
+    Returns (group_matches, knockout_matches) as lists of dicts."""
+    grp, ko = data.fetch_all(token)
+    return [m.to_dict() for m in grp], [m.to_dict() for m in ko]
 
 
 @st.cache_data(show_spinner="🎲 Running qualification simulations…")
@@ -357,8 +365,9 @@ def locked_bracket_html(ov):
 
 
 def played_bracket_html(view):
-    """Render a played-out bracket: each match shows both teams with the projected
-    winner bolded (✓) and the loser dimmed."""
+    """Render a played-out bracket. A really-played tie shows its score (winner
+    bolded); an unplayed tie shows the projected advancer with a ✓; a live tie shows
+    its running score with a 🔴."""
     res = view["results"]
     cols = []
     for title, order, _feed in knockout.ROUNDS:
@@ -366,14 +375,31 @@ def played_bracket_html(view):
         for mno in order:
             d = res.get(mno, {})
             wn = d.get("winner")
+            km = d.get("match")
+            finished = km is not None and km.winner is not None
+            live = km is not None and km.is_live
+
+            def goals_for(t):
+                if finished:
+                    return km.home_goals if t == km.home else (
+                        km.away_goals if t == km.away else None)
+                if live:
+                    return km.live_home if t == km.home else (
+                        km.live_away if t == km.away else None)
+                return None
 
             def cell(t):
                 if not t:
                     return "<div class='t'><i>TBD</i></div>"
                 cls = "win" if t == wn else "lose"
-                return f"<div class='t {cls}'>{flags.label(t)}{' ✓' if t == wn else ''}</div>"
+                g = goals_for(t)
+                if g is not None:                       # real game: show the score
+                    return f"<div class='t {cls}'>{flags.label(t)} <b>{g}</b></div>"
+                mark = " ✓" if t == wn else ""          # unplayed: projected advancer
+                return f"<div class='t {cls}'>{flags.label(t)}{mark}</div>"
 
-            boxes.append(f"<div class='m'><div class='mn'>M{mno}</div>"
+            mn = f"M{mno}{' 🔴' if live else ''}"
+            boxes.append(f"<div class='m'><div class='mn'>{mn}</div>"
                          f"{cell(d.get('a'))}{cell(d.get('b'))}</div>")
         cols.append(f"<div class='col'><div class='rhd'>{title}</div>"
                     f"<div class='rnd'>{''.join(boxes)}</div></div>")
@@ -577,14 +603,14 @@ else:
     st.sidebar.info(f"Using **{os.path.basename(path)}** (no source timestamps).")
 
 def _fetch_matches(tok):
-    fetched = data.fetch_live(tok)
-    data.save_file(CACHE, fetched)
+    grp, ko = data.fetch_all(tok)
+    data.save_file(CACHE, grp, knockout=ko)
     try:                                    # refresh scorers alongside scores
         with open(SCORERS_CACHE, "w") as fh:
             json.dump(data.fetch_scorers(tok, limit=100), fh)
     except Exception:
         pass                                # scorers are a nice-to-have, never fatal
-    return f"⚽ {len(fetched)} matches"
+    return f"⚽ {len(grp)} group + {len(ko)} knockout matches"
 
 
 def _fetch_odds(okey):
@@ -848,14 +874,17 @@ def _auto_refresh():
     if not live_mode or not live_token:
         return
     try:
-        fetched = _shared_live_fetch(live_token)        # list[dict], shared/deduped
+        g_fetched, k_fetched = _shared_live_fetch(live_token)   # shared/deduped
     except Exception:
         return
-    current = data.load_file(CACHE) if os.path.exists(CACHE) else []
-    if fetched != [m.to_dict() for m in current]:
+    have = os.path.exists(CACHE)
+    cur_g = [m.to_dict() for m in (data.load_file(CACHE) if have else [])]
+    cur_k = [m.to_dict() for m in (data.load_knockout(CACHE) if have else [])]
+    if g_fetched != cur_g or k_fetched != cur_k:
         # write the new scores; the data caches are keyed on the file mtime, so the
         # rerun picks them up automatically (no global cache clear needed)
-        data.save_file(CACHE, [data.Match.from_dict(d) for d in fetched])
+        data.save_file(CACHE, [data.Match.from_dict(d) for d in g_fetched],
+                       knockout=[data.Match.from_dict(d) for d in k_fetched])
         st.rerun()
 
 
@@ -941,21 +970,24 @@ if nav == "🗝️ Knockout":
                    "Annex-C table, fixed once every group finishes. Switch the dropdown above "
                    "for a fully projected, played-out bracket.")
     else:
+        ko_games = load_ko(path, mtime)
         if ko_mode == "standings":
-            view = knockout.bracket_view(matches, meta, mode="standings")
+            view = knockout.bracket_view(matches, meta, mode="standings",
+                                         knockout=ko_games)
         else:
             kprobs = cached_mc(path, mtime, n_sims, ko_mode, osig)
             view = knockout.bracket_view(matches, meta, mode=ko_mode, probs=kprobs,
-                                         odds=load_odds(osig))
+                                         odds=load_odds(osig), knockout=ko_games)
         champ = view["champion"]
         if champ:
             st.success(f"🏆 Projected champion: **{flags.label(champ)}**")
         st.markdown(played_bracket_html(view), unsafe_allow_html=True)
         st.caption(
-            "✓ = projected to advance (favourite by "
-            f"{'betting strength' if ko_mode == 'odds' else 'FIFA ranking'}); the loser is "
-            "dimmed. Third-placed teams are placed by FIFA’s official Annex-C table "
-            "(all 495 combinations) once the eight qualifying thirds are set; partial "
+            "**Real played results take priority**, shown with their score; ✓ on an "
+            "unplayed tie = projected to advance (per-match betting odds where priced, "
+            f"else {'betting strength' if ko_mode == 'odds' else 'FIFA ranking'}); the "
+            "loser is dimmed. Third-placed teams are placed by FIFA’s official Annex-C "
+            "table (all 495 combinations) once the eight qualifying thirds are set; partial "
             "brackets use a legal interim matching.")
 
 # ---- Title Odds ----

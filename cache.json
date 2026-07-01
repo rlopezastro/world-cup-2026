@@ -1130,9 +1130,9 @@
       "away_goals": null,
       "kickoff": "2026-07-01T20:00:00Z",
       "status": "IN_PLAY",
-      "last_updated": "2026-07-01T20:14:29Z",
+      "last_updated": "2026-07-01T21:52:27Z",
       "live_home": 0,
-      "live_away": 0,
+      "live_away": 2,
       "stage": "LAST_32",
       "winner": null
     },

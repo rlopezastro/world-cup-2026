@@ -1126,15 +1126,15 @@
       "group": null,
       "home": "Belgium",
       "away": "Senegal",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 3,
+      "away_goals": 2,
       "kickoff": "2026-07-01T20:00:00Z",
-      "status": "IN_PLAY",
-      "last_updated": "2026-07-01T21:52:27Z",
-      "live_home": 0,
-      "live_away": 2,
+      "status": "FINISHED",
+      "last_updated": "2026-07-01T22:54:56Z",
+      "live_home": null,
+      "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": "Belgium"
     },
     {
       "group": null,

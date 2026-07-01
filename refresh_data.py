@@ -44,8 +44,9 @@ SCORES_POST_MIN = 210   # ...until this long after (covers play + post-match set
 
 
 def _matches():
+    """Group AND knockout fixtures, so the gate keeps working past the group stage."""
     try:
-        return data.load_file(CACHE)
+        return data.load_file(CACHE) + data.load_knockout(CACHE)
     except (OSError, ValueError):
         return []
 
@@ -81,9 +82,10 @@ def _odds_due(now) -> bool:
 
 
 def refresh_scores(token: str) -> str:
-    matches = data.fetch_live(token)
-    data.save_file(CACHE, matches)
-    return f"scores: {len(matches)} matches ({sum(m.played for m in matches)} played)"
+    groups, knockout = data.fetch_all(token)
+    data.save_file(CACHE, groups, knockout=knockout)
+    return (f"scores: {len(groups)} group ({sum(m.played for m in groups)} played) + "
+            f"{len(knockout)} knockout ({sum(m.played for m in knockout)} played)")
 
 
 def refresh_scorers(token: str) -> str:
@@ -94,7 +96,8 @@ def refresh_scorers(token: str) -> str:
 
 
 def refresh_odds(okey: str) -> str:
-    teams = sorted({t for m in data.load_file(CACHE) for t in (m.home, m.away)})
+    teams = sorted({t for m in (data.load_file(CACHE) + data.load_knockout(CACHE))
+                    for t in (m.home, m.away)})
     fetched = oddsmod.fetch_odds(okey, teams)
     unmatched = fetched.pop("unmatched", [])
     oddsmod.save_odds(BETTING, fetched)

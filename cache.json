@@ -1112,15 +1112,15 @@
       "group": null,
       "home": "England",
       "away": "Congo DR",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 2,
+      "away_goals": 1,
       "kickoff": "2026-07-01T16:00:00Z",
-      "status": "TIMED",
-      "last_updated": "2026-06-30T15:20:13Z",
+      "status": "FINISHED",
+      "last_updated": "2026-07-01T18:06:21Z",
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": "England"
     },
     {
       "group": null,

@@ -12,7 +12,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Mexico"
+      "winner": "Mexico",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "A",
@@ -26,7 +28,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "South Korea"
+      "winner": "South Korea",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "B",
@@ -40,7 +44,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "D",
@@ -54,7 +60,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "United States"
+      "winner": "United States",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "B",
@@ -68,7 +76,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "C",
@@ -82,7 +92,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "C",
@@ -96,7 +108,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Scotland"
+      "winner": "Scotland",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "D",
@@ -110,7 +124,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Australia"
+      "winner": "Australia",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "E",
@@ -124,7 +140,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Germany"
+      "winner": "Germany",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "F",
@@ -138,7 +156,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "E",
@@ -152,7 +172,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Ivory Coast"
+      "winner": "Ivory Coast",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "F",
@@ -166,7 +188,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Sweden"
+      "winner": "Sweden",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "H",
@@ -180,7 +204,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "G",
@@ -194,7 +220,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "H",
@@ -208,7 +236,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "G",
@@ -222,7 +252,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "I",
@@ -236,7 +268,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "France"
+      "winner": "France",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "I",
@@ -250,7 +284,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Norway"
+      "winner": "Norway",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "J",
@@ -264,7 +300,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Argentina"
+      "winner": "Argentina",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "J",
@@ -278,7 +316,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Austria"
+      "winner": "Austria",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "K",
@@ -292,7 +332,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "L",
@@ -306,7 +348,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "England"
+      "winner": "England",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "L",
@@ -320,7 +364,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Ghana"
+      "winner": "Ghana",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "K",
@@ -334,7 +380,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Colombia"
+      "winner": "Colombia",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "A",
@@ -348,7 +396,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "B",
@@ -362,7 +412,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Switzerland"
+      "winner": "Switzerland",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "B",
@@ -376,7 +428,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Canada"
+      "winner": "Canada",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "A",
@@ -390,7 +444,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Mexico"
+      "winner": "Mexico",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "D",
@@ -404,7 +460,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "United States"
+      "winner": "United States",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "C",
@@ -418,7 +476,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Morocco"
+      "winner": "Morocco",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "C",
@@ -432,7 +492,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Brazil"
+      "winner": "Brazil",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "D",
@@ -446,7 +508,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Paraguay"
+      "winner": "Paraguay",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "F",
@@ -460,7 +524,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Netherlands"
+      "winner": "Netherlands",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "E",
@@ -474,7 +540,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Germany"
+      "winner": "Germany",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "E",
@@ -488,7 +556,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "F",
@@ -502,7 +572,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Japan"
+      "winner": "Japan",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "H",
@@ -516,7 +588,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Spain"
+      "winner": "Spain",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "G",
@@ -530,7 +604,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "H",
@@ -544,7 +620,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "G",
@@ -558,7 +636,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Egypt"
+      "winner": "Egypt",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "J",
@@ -572,7 +652,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Argentina"
+      "winner": "Argentina",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "I",
@@ -586,7 +668,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "France"
+      "winner": "France",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "I",
@@ -600,7 +684,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Norway"
+      "winner": "Norway",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "J",
@@ -614,7 +700,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Algeria"
+      "winner": "Algeria",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "K",
@@ -628,7 +716,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Portugal"
+      "winner": "Portugal",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "L",
@@ -642,7 +732,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "L",
@@ -656,7 +748,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Croatia"
+      "winner": "Croatia",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "K",
@@ -670,7 +764,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Colombia"
+      "winner": "Colombia",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "B",
@@ -684,7 +780,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Switzerland"
+      "winner": "Switzerland",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "B",
@@ -698,7 +796,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Bosnia-Herzegovina"
+      "winner": "Bosnia-Herzegovina",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "C",
@@ -712,7 +812,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Morocco"
+      "winner": "Morocco",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "C",
@@ -726,7 +828,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Brazil"
+      "winner": "Brazil",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "A",
@@ -740,7 +844,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Mexico"
+      "winner": "Mexico",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "A",
@@ -754,7 +860,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "South Africa"
+      "winner": "South Africa",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "E",
@@ -768,7 +876,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Ecuador"
+      "winner": "Ecuador",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "E",
@@ -782,7 +892,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Ivory Coast"
+      "winner": "Ivory Coast",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "F",
@@ -796,7 +908,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Netherlands"
+      "winner": "Netherlands",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "F",
@@ -810,7 +924,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "D",
@@ -824,7 +940,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Turkey"
+      "winner": "Turkey",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "D",
@@ -838,7 +956,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "I",
@@ -852,7 +972,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "France"
+      "winner": "France",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "I",
@@ -866,7 +988,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Senegal"
+      "winner": "Senegal",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "H",
@@ -880,7 +1004,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Spain"
+      "winner": "Spain",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "H",
@@ -894,7 +1020,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "G",
@@ -908,7 +1036,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Belgium"
+      "winner": "Belgium",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "G",
@@ -922,7 +1052,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "L",
@@ -936,7 +1068,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "England"
+      "winner": "England",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "L",
@@ -950,7 +1084,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Croatia"
+      "winner": "Croatia",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "K",
@@ -964,7 +1100,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "K",
@@ -978,7 +1116,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Congo DR"
+      "winner": "Congo DR",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "J",
@@ -992,7 +1132,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": "Argentina"
+      "winner": "Argentina",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": "J",
@@ -1006,7 +1148,9 @@
       "live_home": null,
       "live_away": null,
       "stage": null,
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     }
   ],
   "knockout": [
@@ -1022,7 +1166,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "Canada"
+      "winner": "Canada",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1036,35 +1182,41 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "Brazil"
+      "winner": "Brazil",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
       "home": "Germany",
       "away": "Paraguay",
-      "home_goals": 4,
-      "away_goals": 5,
+      "home_goals": 1,
+      "away_goals": 1,
       "kickoff": "2026-06-29T20:30:00Z",
       "status": "FINISHED",
       "last_updated": "2026-07-02T05:20:12Z",
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "Paraguay"
+      "winner": "Paraguay",
+      "pens_home": 3,
+      "pens_away": 4
     },
     {
       "group": null,
       "home": "Netherlands",
       "away": "Morocco",
-      "home_goals": 3,
-      "away_goals": 4,
+      "home_goals": 1,
+      "away_goals": 1,
       "kickoff": "2026-06-30T01:00:00Z",
       "status": "FINISHED",
       "last_updated": "2026-07-02T05:20:12Z",
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "Morocco"
+      "winner": "Morocco",
+      "pens_home": 2,
+      "pens_away": 3
     },
     {
       "group": null,
@@ -1078,7 +1230,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "Norway"
+      "winner": "Norway",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1092,7 +1246,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "France"
+      "winner": "France",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1106,7 +1262,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "Mexico"
+      "winner": "Mexico",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1120,7 +1278,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "England"
+      "winner": "England",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1134,7 +1294,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "Belgium"
+      "winner": "Belgium",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1148,7 +1310,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": "United States"
+      "winner": "United States",
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1162,7 +1326,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1176,7 +1342,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1190,7 +1358,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1204,7 +1374,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1218,7 +1390,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1232,7 +1406,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_32",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1246,7 +1422,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1260,7 +1438,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1274,7 +1454,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1288,7 +1470,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1302,7 +1486,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1316,7 +1502,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1330,7 +1518,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1344,7 +1534,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "LAST_16",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1358,7 +1550,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "QUARTER_FINALS",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1372,7 +1566,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "QUARTER_FINALS",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1386,7 +1582,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "QUARTER_FINALS",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1400,7 +1598,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "QUARTER_FINALS",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1414,7 +1614,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "SEMI_FINALS",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1428,7 +1630,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "SEMI_FINALS",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1442,7 +1646,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "THIRD_PLACE",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     },
     {
       "group": null,
@@ -1456,7 +1662,9 @@
       "live_home": null,
       "live_away": null,
       "stage": "FINAL",
-      "winner": null
+      "winner": null,
+      "pens_home": null,
+      "pens_away": null
     }
   ]
 }

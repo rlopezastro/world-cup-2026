@@ -40,6 +40,11 @@ class Match:
     # (resolved from the source's winner field, so it already accounts for ET/pens).
     stage: Optional[str] = None
     winner: Optional[str] = None
+    # penalty-shootout tally, when a knockout tie was decided on penalties. The
+    # goals above are the score at the end of play (regular + extra time); these
+    # are the shootout only, so display can read e.g. "1–1 (4–3 pens)".
+    pens_home: Optional[int] = None
+    pens_away: Optional[int] = None
 
     @property
     def played(self) -> bool:
@@ -68,6 +73,8 @@ class Match:
             live_away=d.get("live_away"),
             stage=d.get("stage"),
             winner=d.get("winner"),
+            pens_home=d.get("pens_home"),
+            pens_away=d.get("pens_away"),
         )
 
 
@@ -122,23 +129,40 @@ KNOCKOUT_STAGES = ("LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS",
 def _match_from_raw(m: dict, group: Optional[str]) -> Match:
     """Build a Match from one football-data.org fixture record. `group` is the
     normalized group letter, or None for a knockout fixture (then `stage` is set)."""
-    ft = (m.get("score") or {}).get("fullTime") or {}
+    score = m.get("score") or {}
+    ft = score.get("fullTime") or {}
     status = m.get("status")
     finished = status == "FINISHED"
     live = status in ("IN_PLAY", "PAUSED", "LIVE")
     home = (m.get("homeTeam") or {}).get("name") or "TBD"
     away = (m.get("awayTeam") or {}).get("name") or "TBD"
     # the source's winner already reflects extra time / penalties for knockouts
-    wkey = (m.get("score") or {}).get("winner")
+    wkey = score.get("winner")
     winner = home if wkey == "HOME_TEAM" else away if wkey == "AWAY_TEAM" else None
+
+    home_goals = ft.get("home") if finished else None
+    away_goals = ft.get("away") if finished else None
+    pens_home = pens_away = None
+    if finished and score.get("duration") == "PENALTY_SHOOTOUT":
+        # `fullTime` bundles the shootout into the score (e.g. 4–5). The real score
+        # is regular + extra time (e.g. 1–1); keep the shootout tally separately.
+        rt = score.get("regularTime") or {}
+        et = score.get("extraTime") or {}
+        home_goals = (rt.get("home") or 0) + (et.get("home") or 0)
+        away_goals = (rt.get("away") or 0) + (et.get("away") or 0)
+        pens = score.get("penalties") or {}
+        pens_home, pens_away = pens.get("home"), pens.get("away")
+
     return Match(
         group=group,
         stage=None if group else m.get("stage"),
         home=home,
         away=away,
-        home_goals=ft.get("home") if finished else None,
-        away_goals=ft.get("away") if finished else None,
+        home_goals=home_goals,
+        away_goals=away_goals,
         winner=winner if finished else None,
+        pens_home=pens_home,
+        pens_away=pens_away,
         kickoff=m.get("utcDate"),
         status=status,
         last_updated=m.get("lastUpdated"),

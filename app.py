@@ -413,7 +413,7 @@ def locked_bracket_html(ov, ko_results=None):
                     g = km.live_home if team == km.home else km.live_away
                 if g is not None:
                     cls = "win" if team == wn else "lose"
-                    return f"<div class='t {cls}'>{label} <b>{g}</b></div>"
+                    return f"<div class='t {cls}'>{label} <b>{g}</b>{_pen_note(team, km)}</div>"
                 return f"<div class='t'>{label}</div>"
 
             mn = f"M{mno}{' 🔴' if live else ''}"
@@ -424,10 +424,20 @@ def locked_bracket_html(ov, ko_results=None):
     return _BRACKET_CSS + "<div class='bk'>" + "".join(cols) + "</div>"
 
 
+def _pen_note(team, km):
+    """A muted '(4)' suffix with a team's penalty-shootout tally, or '' if the tie
+    wasn't decided on penalties."""
+    if km is None or km.pens_home is None:
+        return ""
+    pen = km.pens_home if team == km.home else km.pens_away if team == km.away else None
+    return (f" <span style='color:#8b949e;font-size:.8em'>({pen})</span>"
+            if pen is not None else "")
+
+
 def played_bracket_html(view):
     """Render a played-out bracket. A really-played tie shows its score (winner
-    bolded); an unplayed tie shows the projected advancer with a ✓; a live tie shows
-    its running score with a 🔴."""
+    bolded, penalty tally in parentheses); an unplayed tie shows the projected
+    advancer with a ✓; a live tie shows its running score with a 🔴."""
     res = view["results"]
     cols = []
     for title, order, _feed in knockout.ROUNDS:
@@ -454,7 +464,8 @@ def played_bracket_html(view):
                 cls = "win" if t == wn else "lose"
                 g = goals_for(t)
                 if g is not None:                       # real game: show the score
-                    return f"<div class='t {cls}'>{flags.label(t)} <b>{g}</b></div>"
+                    return (f"<div class='t {cls}'>{flags.label(t)} <b>{g}</b>"
+                            f"{_pen_note(t, km)}</div>")
                 mark = " ✓" if t == wn else ""          # unplayed: projected advancer
                 return f"<div class='t {cls}'>{flags.label(t)}{mark}</div>"
 

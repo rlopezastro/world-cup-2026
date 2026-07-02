@@ -185,7 +185,8 @@ def have_odds(sig=None):
     return bool(o.get("matches") or o.get("outrights_strength"))
 
 
-LIVE_WINDOW_MIN = 150   # minutes after kickoff a match may plausibly still be in play
+LIVE_WINDOW_MIN = 195   # minutes after kickoff a match may plausibly still be in play
+                        # (90 + halftime + extra time + penalties for a knockout tie)
 
 
 def _in_live_window(matches):
@@ -701,7 +702,9 @@ if PUBLISHED:
     # TTL cache) using a server-side key from st.secrets — only while a game is live.
     token, refresh_secs = "", 120
     live_token = _st_secret("football_data")
-    live_mode = bool(live_token) and _in_live_window(matches)
+    # watch group AND knockout fixtures, else in-app live polling switches off once
+    # the group stage ends (no group game is ever "in play" again)
+    live_mode = bool(live_token) and _in_live_window(matches + data.load_knockout(path))
     od = load_odds(betting_sig())
     odds_when = _ago(data.parse_dt(od.get("fetched"))) if od.get("fetched") else "not loaded"
     if live_token:

@@ -40,7 +40,13 @@ ODDS_LEAD_MIN = 35      # fetch odds when a game kicks off within this many minu
 ODDS_GAP_MIN = 45       # ...but not if odds were already fetched this recently (>lead,
                         #    so the 5-min heartbeat fetches odds just once per kickoff)
 SCORES_PRE_MIN = 5      # start refreshing scores this long before kickoff
-SCORES_POST_MIN = 210   # ...until this long after (covers play + post-match settle)
+SCORES_CATCHUP_H = 48   # ...and keep refreshing a kicked-off game until its result is
+                        #    recorded, up to this long after kickoff. GitHub throttles
+                        #    the */5 cron to a run every 1–4h, so a fixed post-match
+                        #    window can close before any run fires (esp. between the
+                        #    sparse, far-apart knockout games). Staying "due" until the
+                        #    result is actually saved means the next run — whenever it
+                        #    lands — catches up; the cap only guards an unresolved fixture.
 
 
 def _matches():
@@ -52,12 +58,16 @@ def _matches():
 
 
 def _scores_due(now) -> bool:
+    """Due when the schedule says a game is imminent / underway / already done but we
+    haven't recorded its result yet — i.e. our data is behind the fixture list. This
+    is result-driven, not a fixed window, so a delayed run can't permanently miss a
+    game: whichever run fires next after kickoff records it."""
     for m in _matches():
-        if m.played:
+        if m.played:                       # already have this result
             continue
         ko = data.parse_dt(m.kickoff)
         if ko and ko - timedelta(minutes=SCORES_PRE_MIN) <= now \
-                <= ko + timedelta(minutes=SCORES_POST_MIN):
+                <= ko + timedelta(hours=SCORES_CATCHUP_H):
             return True
     return False
 

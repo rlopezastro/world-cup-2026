@@ -1,78 +1,71 @@
 {
   "matches": {
-    "Portugal vs Croatia": {
-      "home": 1.6970833333333333,
-      "draw": 3.702083333333333,
-      "away": 5.496666666666666
-    },
-    "Switzerland vs Algeria": {
-      "home": 1.9775,
-      "draw": 3.2758333333333334,
-      "away": 4.327916666666667
-    },
     "Australia vs Egypt": {
-      "home": 3.37875,
-      "draw": 2.891666666666667,
-      "away": 2.4925
+      "home": 3.6464,
+      "draw": 2.8939999999999997,
+      "away": 2.3856
     },
     "Argentina vs Cape Verde Islands": {
-      "home": 1.14875,
-      "draw": 8.247083333333334,
-      "away": 20.534166666666668
+      "home": 1.1383999999999999,
+      "draw": 8.6556,
+      "away": 23.522399999999998
     },
     "Colombia vs Ghana": {
-      "home": 1.44125,
-      "draw": 4.270416666666667,
-      "away": 8.605
+      "home": 1.4256,
+      "draw": 4.4144,
+      "away": 8.9712
     },
     "Canada vs Morocco": {
-      "home": 5.14375,
-      "draw": 3.4658333333333338,
-      "away": 1.7841666666666667
+      "home": 5.2,
+      "draw": 3.5039999999999996,
+      "away": 1.7724000000000002
     },
     "Paraguay vs France": {
-      "home": 17.534166666666668,
-      "draw": 7.038333333333333,
-      "away": 1.1891666666666667
+      "home": 17.3904,
+      "draw": 6.9884,
+      "away": 1.1916
     },
     "Brazil vs Norway": {
-      "home": 1.8712499999999999,
-      "draw": 3.6875,
-      "away": 4.2058333333333335
+      "home": 1.8624,
+      "draw": 3.6848,
+      "away": 4.2532
     },
     "Mexico vs England": {
-      "home": 3.1024999999999996,
-      "draw": 3.1824999999999997,
-      "away": 2.4595833333333332
+      "home": 3.1439999999999997,
+      "draw": 3.2096,
+      "away": 2.42
+    },
+    "Portugal vs Spain": {
+      "home": 4.071666666666666,
+      "draw": 3.6024999999999996,
+      "away": 1.9233333333333331
     },
     "United States vs Belgium": {
-      "home": 2.625,
-      "draw": 3.4075,
-      "away": 2.7116666666666664
+      "home": 2.6464,
+      "draw": 3.3928000000000003,
+      "away": 2.6984
     }
   },
   "outrights": {
-    "France": 2.965,
+    "France": 2.94,
     "Argentina": 5.3,
-    "Spain": 7.0,
-    "England": 10.75,
+    "Spain": 7.2,
+    "England": 11.0,
     "Brazil": 13.5,
-    "Portugal": 16.75,
-    "Mexico": 29.5,
-    "United States": 32.5,
+    "Portugal": 14.25,
+    "Mexico": 31.5,
     "Colombia": 32.5,
-    "Morocco": 33.0,
+    "United States": 33.5,
+    "Morocco": 34.0,
     "Norway": 42.0,
-    "Belgium": 54.5,
-    "Switzerland": 105.5,
-    "Croatia": 260.5,
-    "Canada": 325.5,
-    "Egypt": 395.5,
-    "Paraguay": 460.5,
+    "Belgium": 57.0,
+    "Switzerland": 73.0,
+    "Canada": 335.5,
+    "Egypt": 405.5,
     "Australia": 475.5,
-    "Algeria": 580.5,
-    "Ghana": 525.5,
+    "Paraguay": 525.5,
+    "Ghana": 545.5,
     "Cape Verde Islands": 875.5
   },
-  "fetched": "2026-07-02T22:45:10.031004+00:00"
+  "fetched": "2026-07-03T09:57:14.110430+00:00"
 }

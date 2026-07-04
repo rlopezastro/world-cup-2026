@@ -1,64 +1,63 @@
 {
   "matches": {
-    "Colombia vs Ghana": {
-      "home": 1.4312500000000001,
-      "draw": 4.345416666666667,
-      "away": 8.64
-    },
     "Canada vs Morocco": {
-      "home": 4.712916666666667,
-      "draw": 3.389583333333333,
-      "away": 1.8679166666666667
+      "home": 5.2936000000000005,
+      "draw": 3.4524,
+      "away": 1.7844
     },
     "Paraguay vs France": {
-      "home": 17.671666666666667,
-      "draw": 7.09,
-      "away": 1.1866666666666668
+      "home": 18.541600000000003,
+      "draw": 7.3536,
+      "away": 1.1784
     },
     "Brazil vs Norway": {
-      "home": 1.8250000000000002,
-      "draw": 3.7216666666666662,
-      "away": 4.379583333333334
+      "home": 1.828,
+      "draw": 3.7324,
+      "away": 4.388400000000001
     },
     "Mexico vs England": {
-      "home": 3.112083333333333,
-      "draw": 3.202916666666667,
-      "away": 2.4345833333333333
+      "home": 3.1156,
+      "draw": 3.2127999999999997,
+      "away": 2.4324
     },
     "Portugal vs Spain": {
-      "home": 4.0529166666666665,
-      "draw": 3.6370833333333334,
-      "away": 1.9166666666666667
+      "home": 4.0664,
+      "draw": 3.6216000000000004,
+      "away": 1.9184
     },
     "United States vs Belgium": {
-      "home": 2.7641666666666667,
-      "draw": 3.37125,
-      "away": 2.5866666666666664
+      "home": 2.7571999999999997,
+      "draw": 3.36,
+      "away": 2.612
     },
     "Argentina vs Egypt": {
-      "home": 1.3499999999999999,
-      "draw": 4.893636363636364,
-      "away": 9.957272727272727
+      "home": 1.3604166666666666,
+      "draw": 4.855833333333334,
+      "away": 9.716666666666667
+    },
+    "Switzerland vs Colombia": {
+      "home": 3.5009090909090905,
+      "draw": 3.191363636363636,
+      "away": 2.2386363636363638
     }
   },
   "outrights": {
-    "France": 2.9299999999999997,
+    "France": 2.94,
     "Argentina": 5.5,
     "Spain": 7.2,
-    "England": 11.5,
-    "Brazil": 13.5,
+    "England": 11.25,
+    "Brazil": 13.25,
     "Portugal": 14.25,
+    "Colombia": 27.5,
     "Mexico": 30.5,
-    "Colombia": 32.5,
     "United States": 34.5,
-    "Morocco": 34.0,
-    "Switzerland": 53.0,
-    "Norway": 47.0,
-    "Belgium": 54.5,
-    "Egypt": 280.5,
-    "Canada": 335.5,
-    "Paraguay": 500.5,
-    "Ghana": 535.5
+    "Morocco": 34.5,
+    "Norway": 42.0,
+    "Belgium": 58.0,
+    "Switzerland": 83.5,
+    "Canada": 275.5,
+    "Egypt": 345.5,
+    "Paraguay": 460.5
   },
-  "fetched": "2026-07-04T01:12:11.716652+00:00"
+  "fetched": "2026-07-04T09:21:45.045327+00:00"
 }

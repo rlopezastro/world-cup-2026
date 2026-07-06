@@ -1,50 +1,49 @@
 {
   "matches": {
-    "Mexico vs England": {
-      "home": 3.1012500000000003,
-      "draw": 3.0775,
-      "away": 2.55125
-    },
     "Portugal vs Spain": {
-      "home": 4.026666666666666,
-      "draw": 3.6808333333333336,
-      "away": 1.9183333333333332
+      "home": 4.126666666666666,
+      "draw": 3.6275,
+      "away": 1.92125
     },
     "United States vs Belgium": {
-      "home": 2.6770833333333335,
-      "draw": 3.4766666666666666,
-      "away": 2.6266666666666665
+      "home": 2.5124999999999997,
+      "draw": 3.45125,
+      "away": 2.8366666666666664
     },
     "Argentina vs Egypt": {
-      "home": 1.3862499999999998,
-      "draw": 4.7491666666666665,
-      "away": 9.21375
+      "home": 1.38,
+      "draw": 4.723333333333334,
+      "away": 9.261666666666667
     },
     "Switzerland vs Colombia": {
-      "home": 3.5700000000000003,
-      "draw": 3.0970833333333334,
-      "away": 2.276666666666667
+      "home": 3.49875,
+      "draw": 3.0816666666666666,
+      "away": 2.3175
     },
     "France vs Morocco": {
-      "home": 1.585416666666667,
-      "draw": 3.921666666666667,
-      "away": 6.329166666666667
+      "home": 1.58125,
+      "draw": 3.924583333333333,
+      "away": 6.392916666666667
+    },
+    "Norway vs England": {
+      "home": 4.061739130434782,
+      "draw": 3.641304347826087,
+      "away": 1.9104347826086956
     }
   },
   "outrights": {
-    "France": 2.7,
-    "Argentina": 5.55,
-    "Spain": 6.85,
-    "England": 10.5,
-    "Portugal": 14.5,
-    "Norway": 16.5,
-    "Mexico": 26.0,
-    "Colombia": 27.5,
-    "Morocco": 30.5,
-    "United States": 33.5,
+    "France": 2.75,
+    "Argentina": 5.7,
+    "England": 6.55,
+    "Spain": 7.1,
+    "Portugal": 15.25,
+    "Norway": 19.0,
+    "Colombia": 27.0,
+    "United States": 34.0,
+    "Morocco": 33.5,
     "Belgium": 55.5,
-    "Switzerland": 78.5,
-    "Egypt": 285.5
+    "Switzerland": 81.0,
+    "Egypt": 290.5
   },
-  "fetched": "2026-07-05T23:29:01.068085+00:00"
+  "fetched": "2026-07-06T11:26:39.636063+00:00"
 }

@@ -1,49 +1,42 @@
 {
   "matches": {
-    "Portugal vs Spain": {
-      "home": 3.955833333333333,
-      "draw": 3.5500000000000003,
-      "away": 1.9704166666666667
-    },
-    "United States vs Belgium": {
-      "home": 2.526666666666667,
-      "draw": 3.475,
-      "away": 2.8183333333333334
-    },
     "Argentina vs Egypt": {
-      "home": 1.3641666666666667,
-      "draw": 4.823333333333333,
-      "away": 9.815416666666666
+      "home": 1.3464,
+      "draw": 4.9092,
+      "away": 10.978800000000001
     },
     "Switzerland vs Colombia": {
-      "home": 3.55125,
-      "draw": 3.0883333333333334,
-      "away": 2.29
+      "home": 3.5860000000000003,
+      "draw": 3.11,
+      "away": 2.2763999999999998
     },
     "France vs Morocco": {
-      "home": 1.5891666666666666,
-      "draw": 3.9,
-      "away": 6.305416666666667
+      "home": 1.5916,
+      "draw": 3.8824,
+      "away": 6.3064
+    },
+    "Spain vs Belgium": {
+      "home": 1.6216,
+      "draw": 3.9888,
+      "away": 5.624
     },
     "Norway vs England": {
-      "home": 4.034583333333333,
-      "draw": 3.6654166666666668,
-      "away": 1.9129166666666666
+      "home": 4.0764,
+      "draw": 3.6784,
+      "away": 1.8980000000000001
     }
   },
   "outrights": {
-    "France": 2.75,
-    "Argentina": 5.65,
-    "England": 6.55,
-    "Spain": 7.1,
-    "Portugal": 15.5,
-    "Norway": 19.5,
-    "Colombia": 27.5,
-    "United States": 34.0,
-    "Morocco": 31.5,
-    "Switzerland": 68.5,
-    "Belgium": 58.0,
-    "Egypt": 280.5
+    "France": 2.875,
+    "Spain": 4.8,
+    "Argentina": 5.55,
+    "England": 6.3,
+    "Norway": 17.5,
+    "Colombia": 26.5,
+    "Morocco": 32.5,
+    "Belgium": 38.0,
+    "Switzerland": 81.0,
+    "Egypt": 285.5
   },
-  "fetched": "2026-07-06T18:50:55.417721+00:00"
+  "fetched": "2026-07-07T10:25:04.781364+00:00"
 }

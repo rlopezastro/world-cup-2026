@@ -1,28 +1,28 @@
 {
   "matches": {
     "Norway vs England": {
-      "home": 3.9256,
-      "draw": 3.7316000000000003,
-      "away": 1.9296
+      "home": 3.8844,
+      "draw": 3.7264,
+      "away": 1.9416
     },
     "Argentina vs Switzerland": {
-      "home": 1.696,
-      "draw": 3.6072,
-      "away": 5.8132
+      "home": 1.7012,
+      "draw": 3.5976,
+      "away": 5.75
     },
     "France vs Spain": {
-      "home": 2.3433333333333333,
-      "draw": 3.2495833333333333,
-      "away": 3.2274999999999996
+      "home": 2.3808,
+      "draw": 3.266,
+      "away": 3.1648
     }
   },
   "outrights": {
-    "France": 2.58,
+    "France": 2.5700000000000003,
     "Spain": 4.415,
     "Argentina": 5.55,
-    "England": 5.85,
-    "Norway": 16.5,
+    "England": 5.95,
+    "Norway": 16.75,
     "Switzerland": 48.0
   },
-  "fetched": "2026-07-11T08:46:01.638152+00:00"
+  "fetched": "2026-07-11T14:22:19.430017+00:00"
 }

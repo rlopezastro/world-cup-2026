@@ -1,19 +1,14 @@
 {
   "matches": {
-    "France vs England": {
-      "home": 1.754,
-      "draw": 4.1688,
-      "away": 4.34
-    },
     "Spain vs Argentina": {
-      "home": 2.2952,
-      "draw": 3.0639999999999996,
-      "away": 3.6124
+      "home": 2.31,
+      "draw": 3.0512,
+      "away": 3.608
     }
   },
   "outrights": {
-    "Spain": 1.65,
-    "Argentina": 2.3200000000000003
+    "Spain": 1.655,
+    "Argentina": 2.31
   },
-  "fetched": "2026-07-18T20:33:41.375546+00:00"
+  "fetched": "2026-07-19T09:04:06.303105+00:00"
 }

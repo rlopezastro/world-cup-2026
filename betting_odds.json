@@ -1,14 +1,14 @@
 {
   "matches": {
     "Spain vs Argentina": {
-      "home": 2.31,
-      "draw": 3.0512,
-      "away": 3.608
+      "home": 2.316,
+      "draw": 3.0383999999999998,
+      "away": 3.6096
     }
   },
   "outrights": {
-    "Spain": 1.655,
-    "Argentina": 2.31
+    "Spain": 1.65,
+    "Argentina": 2.3200000000000003
   },
-  "fetched": "2026-07-19T09:04:06.303105+00:00"
+  "fetched": "2026-07-19T14:23:44.145595+00:00"
 }
